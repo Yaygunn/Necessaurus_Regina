@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SideScroller.Components.Jump;
 
 namespace SideScroller.Player.Controller
 {
@@ -8,24 +9,35 @@ namespace SideScroller.Player.Controller
     {
         #region States
         public IdleState idleState {  get; private set; }
-        public JumpState jumpState { get; private set; }
+        public AirState airState { get; private set; }
         public CrouchState crouchState { get; private set; }
         #endregion
 
         #region Components
+        public AirComp airComp { get; private set; }
         #endregion
 
+        public float JumpCoyote {  get; private set; }
+        public float CrouchCoyote { get; private set; }
+        private float _maxCoyote { get; } = 0.2f;
         public BaseState CurrentState { get; private set; }
         private void Start()
         {
             idleState = new IdleState(this);
-            jumpState = new JumpState(this);
+            airState = new AirState(this);
             crouchState = new CrouchState(this);
+
+            airComp = GetComponent<AirComp>();
 
             CurrentState = idleState;
             CurrentState.Enter();
         }
 
+        private void Update()
+        {
+            CurrentState.Tick();
+            CoyoteTimer();
+        }
         public void ChangeState(BaseState newState)
         {
             CurrentState.Exit();
@@ -41,6 +53,28 @@ namespace SideScroller.Player.Controller
         public void OnCrouch()
         {
             CurrentState.OnCrouch();
+        }
+
+        public void TriggerCoyoteJump()
+        {
+            JumpCoyote = _maxCoyote;
+            CrouchCoyote = 0;
+        }
+
+        public void TriggerCoyoteCrouch()
+        {
+            CrouchCoyote = _maxCoyote;
+            JumpCoyote = 0;
+        }
+        public void ResetCoyote()
+        {
+            CrouchCoyote = 0;
+            JumpCoyote = 0;
+        }
+        private void CoyoteTimer()
+        {
+            CrouchCoyote -=Time.deltaTime;
+            JumpCoyote -= Time.deltaTime;
         }
     }
 }

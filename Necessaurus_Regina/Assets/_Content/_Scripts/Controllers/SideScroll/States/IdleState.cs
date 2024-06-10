@@ -9,6 +9,11 @@ namespace SideScroller.Player.Controller
         public override void Enter()
         {
             base.Enter();
+            if (_player.JumpCoyote > 0)
+            {
+                _player.ResetCoyote();
+                _player.ChangeState(_player.airState);
+            }
         }
         public override void Tick()
         {
@@ -17,7 +22,7 @@ namespace SideScroller.Player.Controller
         public override void OnJump()
         {
             base.OnJump();
-            _player.ChangeState(_player.jumpState);
+            _player.ChangeState(_player.airState);
         }
         public override void OnCrouch()
         {
