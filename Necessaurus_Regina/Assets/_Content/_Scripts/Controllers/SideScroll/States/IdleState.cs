@@ -14,6 +14,11 @@ namespace SideScroller.Player.Controller
                 _player.ResetCoyote();
                 _player.ChangeState(_player.airState);
             }
+            if(_player.CrouchCoyote > 0)
+            {
+                _player.ResetCoyote();
+                _player.ChangeState(_player.crouchState);
+            }
         }
         public override void Tick()
         {

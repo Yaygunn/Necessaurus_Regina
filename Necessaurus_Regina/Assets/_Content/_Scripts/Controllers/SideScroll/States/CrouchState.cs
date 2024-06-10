@@ -22,6 +22,17 @@ namespace SideScroller.Player.Controller
         {
             base.Exit(); 
         }
+        public override void OnJump()
+        {
+            base.OnJump();
+            _player.TriggerCoyoteJump();
+
+        }
+        public override void OnCrouch()
+        {
+            base.OnCrouch();
+            _player.TriggerCoyoteCrouch();
+        }
 
         private void EndOfCrouch()
         {
