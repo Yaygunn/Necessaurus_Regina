@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SideScroller.Components.Jump;
+using SideScroller.Components.Crouch;
 
 namespace SideScroller.Player.Controller
 {
@@ -15,6 +16,7 @@ namespace SideScroller.Player.Controller
 
         #region Components
         public AirComp airComp { get; private set; }
+        public CrouchComp crouchComp { get; private set; }
         #endregion
 
         public float JumpCoyote {  get; private set; }
@@ -28,6 +30,7 @@ namespace SideScroller.Player.Controller
             crouchState = new CrouchState(this);
 
             airComp = GetComponent<AirComp>();
+            crouchComp = GetComponent<CrouchComp>();
 
             CurrentState = idleState;
             CurrentState.Enter();
