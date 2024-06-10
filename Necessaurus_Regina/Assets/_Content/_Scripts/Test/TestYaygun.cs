@@ -14,16 +14,16 @@ namespace Test.Yaygun
         [SerializeField] bool spawn;
         [SerializeField] bool spawn2;
 
+        private void Start()
+        {
+            Invoke("Spawnn1", 1);
+            Invoke("Spawnn2", 2);
+        }
         private void Update()
         {
             if(spawn)
             {
-                spawn = false;
-                GameObject obj = ObjectPoolManager.Instance.GetObject(prefab);
-                Vector3 pos = new Vector3(17, 1, 0);
-                obj.transform.position = pos;
-                obj.GetComponent<ScrollObject>().SetEndLine(-5);
-                obj.SetActive(true);
+                
             }
             if (spawn2)
             {
@@ -36,6 +36,25 @@ namespace Test.Yaygun
             }
         }
 
+        private void Spawnn1()
+        {
+            Invoke("Spawnn1", 2);
+            Spawn(prefab);
+        }
+        private void Spawnn2()
+        {
+            Invoke("Spawnn2", 2);
+            Spawn(prefab2);
+        }
 
+        private void Spawn(GameObject prefabb)
+        {
+            spawn = false;
+            GameObject obj = ObjectPoolManager.Instance.GetObject(prefabb);
+            Vector3 pos = new Vector3(17, 0, 0);
+            obj.transform.position = pos;
+            obj.GetComponent<ScrollObject>().SetEndLine(-5);
+            obj.SetActive(true);
+        }
     }
 }
