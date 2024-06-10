@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SideScroller.Components.ScrollObject
@@ -27,6 +28,7 @@ namespace SideScroller.Components.ScrollObject
             }
         }
 
+        
         public void SetEndLine(float endX)
         {
             _endX = endX;
@@ -34,7 +36,6 @@ namespace SideScroller.Components.ScrollObject
 
         private void ReachedEndLine()
         {
-            print("Reached");
             gameObject.SetActive(false);
         }
     }
