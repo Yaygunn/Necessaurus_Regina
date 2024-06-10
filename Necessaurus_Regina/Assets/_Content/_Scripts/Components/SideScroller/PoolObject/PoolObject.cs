@@ -16,7 +16,8 @@ namespace Component.PoolObject
 
         private void OnDisable()
         {
-            _returnAction(_signObject, gameObject);
+
+            _returnAction?.Invoke(_signObject, gameObject);
         }
     }
 }
