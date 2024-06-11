@@ -1,3 +1,4 @@
+using BallGame.Player.Controller;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,7 @@ namespace Input.BallGame
 {
     public class Input_BallGame : MonoBehaviour, Keys.IBallGameActions
     {
+        [SerializeField] private PlayerController _playerController;
         private Keys _input;
 
         private void Awake()
@@ -21,31 +23,30 @@ namespace Input.BallGame
             _input.BallGame.RemoveCallbacks(this);
             _input.BallGame.Disable();
         }
+
+
         public void OnHeadHit(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
-                print("head");
+                _playerController.OnHead();
         }
 
         public void OnLeftFoot(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
-                print("left");
+                _playerController.OnLeftFoot();
         }
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            float f = context.ReadValue<float>();
-            if (f != 0)
-            {
-                print(f);
-            }
+            _playerController.OnMoveInput(context.ReadValue<float>());
+            
         }
 
         public void OnRightFoot(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
-                print("right");
+                _playerController.OnRightFoot();
         }
     }
 
