@@ -92,6 +92,116 @@ public partial class @Keys: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""BallGame"",
+            ""id"": ""6482a7d3-2819-4eca-bffe-35c4f73dba08"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""db0f32e9-1a75-4448-a9b4-a422088c2a2b"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""HeadHit"",
+                    ""type"": ""Button"",
+                    ""id"": ""198a0bc9-904b-41bd-8a5f-361617bc5852"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftFoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""37fef2af-4981-4755-9f56-344a0d37645a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightFoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""1c79c354-f78d-4db0-bb20-47c6e04010b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""e08d64f6-0367-4d54-9a81-ea750ba82e6a"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""3a3831de-e601-4320-afce-d44533a82545"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""7c183401-4198-4313-91b5-d4f0d4b9b8d5"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8831ce7-533f-4ebd-9bfb-d7f7b9d6f653"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HeadHit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d22fc848-eb54-4c3f-9aaf-2e66e32fb468"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftFoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a02adbc-2681-464b-bbde-67aadc432465"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightFoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -100,6 +210,12 @@ public partial class @Keys: IInputActionCollection2, IDisposable
         m_SideScroller = asset.FindActionMap("SideScroller", throwIfNotFound: true);
         m_SideScroller_Jump = m_SideScroller.FindAction("Jump", throwIfNotFound: true);
         m_SideScroller_Crouch = m_SideScroller.FindAction("Crouch", throwIfNotFound: true);
+        // BallGame
+        m_BallGame = asset.FindActionMap("BallGame", throwIfNotFound: true);
+        m_BallGame_Move = m_BallGame.FindAction("Move", throwIfNotFound: true);
+        m_BallGame_HeadHit = m_BallGame.FindAction("HeadHit", throwIfNotFound: true);
+        m_BallGame_LeftFoot = m_BallGame.FindAction("LeftFoot", throwIfNotFound: true);
+        m_BallGame_RightFoot = m_BallGame.FindAction("RightFoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -211,9 +327,86 @@ public partial class @Keys: IInputActionCollection2, IDisposable
         }
     }
     public SideScrollerActions @SideScroller => new SideScrollerActions(this);
+
+    // BallGame
+    private readonly InputActionMap m_BallGame;
+    private List<IBallGameActions> m_BallGameActionsCallbackInterfaces = new List<IBallGameActions>();
+    private readonly InputAction m_BallGame_Move;
+    private readonly InputAction m_BallGame_HeadHit;
+    private readonly InputAction m_BallGame_LeftFoot;
+    private readonly InputAction m_BallGame_RightFoot;
+    public struct BallGameActions
+    {
+        private @Keys m_Wrapper;
+        public BallGameActions(@Keys wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_BallGame_Move;
+        public InputAction @HeadHit => m_Wrapper.m_BallGame_HeadHit;
+        public InputAction @LeftFoot => m_Wrapper.m_BallGame_LeftFoot;
+        public InputAction @RightFoot => m_Wrapper.m_BallGame_RightFoot;
+        public InputActionMap Get() { return m_Wrapper.m_BallGame; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BallGameActions set) { return set.Get(); }
+        public void AddCallbacks(IBallGameActions instance)
+        {
+            if (instance == null || m_Wrapper.m_BallGameActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_BallGameActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @HeadHit.started += instance.OnHeadHit;
+            @HeadHit.performed += instance.OnHeadHit;
+            @HeadHit.canceled += instance.OnHeadHit;
+            @LeftFoot.started += instance.OnLeftFoot;
+            @LeftFoot.performed += instance.OnLeftFoot;
+            @LeftFoot.canceled += instance.OnLeftFoot;
+            @RightFoot.started += instance.OnRightFoot;
+            @RightFoot.performed += instance.OnRightFoot;
+            @RightFoot.canceled += instance.OnRightFoot;
+        }
+
+        private void UnregisterCallbacks(IBallGameActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @HeadHit.started -= instance.OnHeadHit;
+            @HeadHit.performed -= instance.OnHeadHit;
+            @HeadHit.canceled -= instance.OnHeadHit;
+            @LeftFoot.started -= instance.OnLeftFoot;
+            @LeftFoot.performed -= instance.OnLeftFoot;
+            @LeftFoot.canceled -= instance.OnLeftFoot;
+            @RightFoot.started -= instance.OnRightFoot;
+            @RightFoot.performed -= instance.OnRightFoot;
+            @RightFoot.canceled -= instance.OnRightFoot;
+        }
+
+        public void RemoveCallbacks(IBallGameActions instance)
+        {
+            if (m_Wrapper.m_BallGameActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IBallGameActions instance)
+        {
+            foreach (var item in m_Wrapper.m_BallGameActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_BallGameActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public BallGameActions @BallGame => new BallGameActions(this);
     public interface ISideScrollerActions
     {
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+    }
+    public interface IBallGameActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnHeadHit(InputAction.CallbackContext context);
+        void OnLeftFoot(InputAction.CallbackContext context);
+        void OnRightFoot(InputAction.CallbackContext context);
     }
 }
