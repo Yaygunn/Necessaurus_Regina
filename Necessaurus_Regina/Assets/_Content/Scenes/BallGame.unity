@@ -584,7 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 4
-  _acceleration: 12
+  _acceleration: 20
 --- !u!114 &698127095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,10 +597,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32dedaf9d8576e64d98ef04dc1493350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HeadCollider: {fileID: 1188612607}
-  LeftFootCollider: {fileID: 1265863502}
-  RightFootCollider: {fileID: 1175876766}
-  ChestCollider: {fileID: 1228516171}
+  <HeadHitPoint>k__BackingField: {fileID: 1188612608}
+  <ChestHitPoint>k__BackingField: {fileID: 1228516172}
+  <RightLegHitPoint>k__BackingField: {fileID: 1175876767}
+  <LeftLegHitPoint>k__BackingField: {fileID: 1265863503}
 --- !u!1 &827605648
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +943,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.34125614, g: 0.8396226, b: 0, a: 1}
   m_FlipX: 0
@@ -1032,6 +1032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1175876765}
   - component: {fileID: 1175876766}
+  - component: {fileID: 1175876767}
   m_Layer: 3
   m_Name: RightFoot
   m_TagString: Player
@@ -1062,7 +1063,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175876764}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1090,6 +1091,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &1175876767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175876764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d53ec3910c6434f97d753c6c264abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionEndTime: 0.2
+  _moveEndTime: 0.1
 --- !u!1 &1188612605
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,6 +1115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1188612606}
   - component: {fileID: 1188612607}
+  - component: {fileID: 1188612608}
   m_Layer: 3
   m_Name: Head
   m_TagString: Player
@@ -1130,7 +1146,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188612605}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1158,6 +1174,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &1188612608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188612605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d53ec3910c6434f97d753c6c264abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionEndTime: 0.2
+  _moveEndTime: 0.1
 --- !u!1 &1221619261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,6 +1229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1228516170}
   - component: {fileID: 1228516171}
+  - component: {fileID: 1228516172}
   m_Layer: 3
   m_Name: Chest
   m_TagString: Player
@@ -1229,7 +1260,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228516169}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1257,6 +1288,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &1228516172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228516169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d53ec3910c6434f97d753c6c264abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionEndTime: 0.2
+  _moveEndTime: 0.1
 --- !u!1 &1265863500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,6 +1312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1265863501}
   - component: {fileID: 1265863502}
+  - component: {fileID: 1265863503}
   m_Layer: 3
   m_Name: LeftFoot
   m_TagString: Player
@@ -1297,7 +1343,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265863500}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1325,6 +1371,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &1265863503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265863500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d53ec3910c6434f97d753c6c264abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionEndTime: 0.2
+  _moveEndTime: 0.1
 --- !u!1 &1301125077
 GameObject:
   m_ObjectHideFlags: 0

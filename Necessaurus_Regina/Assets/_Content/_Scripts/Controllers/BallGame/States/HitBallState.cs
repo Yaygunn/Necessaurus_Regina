@@ -14,36 +14,33 @@ namespace BallGame.Player.Controller
             switch(_player.CurrentHitMove)
             {
                 case E_HitVersions.head:
-                    Debug.Log("Hit Head");
+                    _player.HeadHitPoint.ActivateHit(HitEndAction);
                     break;
                 case E_HitVersions.chest:
-                    Debug.Log("Chest Head");
+                    _player.ChestHitPoint.ActivateHit(HitEndAction);
                     break;
                 case E_HitVersions.left:
-                    Debug.Log("Hit Left");
+                    _player.LeftLegHitPoint.ActivateHit(HitEndAction);
                     break;
                 case E_HitVersions.right:
-                    Debug.Log("Hit Right");
+                    _player.RightLegHitPoint.ActivateHit(HitEndAction);
                     break;
             }
             
-            // _player.ResetCoyoteTime();
-            // _player.ChangeState(_player.moveState);
+             _player.ResetCoyoteTime();
         }
         public override void Tick()
         {
             base.Tick();
-            
-            if (_player.HitTime <= 0)
-            {
-                _player.ChangeState(_player.moveState);
-            }
         }
         public override void Exit()
         {
             base.Exit();
-            
-            _player.ResetCoyoteTime();
+        }
+
+        private void HitEndAction()
+        {
+            _player.ChangeState(_player.moveState);
         }
     }
 }

@@ -1,3 +1,4 @@
+using BallGame.Components.Player.HitPoint;
 using BallGame.Components.Player.Move;
 using UnityEngine;
 
@@ -17,11 +18,13 @@ namespace BallGame.Player.Controller
         public E_HitVersions CurrentHitMove {  get; private set; }
         public float HitTime {  get; private set; }
 
-        public Collider2D HeadCollider;
-        public Collider2D LeftFootCollider;
-        public Collider2D RightFootCollider;
-        public Collider2D ChestCollider;
-        private float _hitCoyoteTime { get; } = 0.2f;
+
+        [field:SerializeField] public BallHitPoint HeadHitPoint { get; private set; }
+        [field:SerializeField] public BallHitPoint ChestHitPoint { get; private set; }
+        [field:SerializeField] public BallHitPoint RightLegHitPoint { get; private set; }
+        [field:SerializeField] public BallHitPoint LeftLegHitPoint { get; private set; }
+
+        private float _hitCoyoteTime { get; } = 0.1f;
         void Start()
         {
             moveState = new MoveState(this);
@@ -32,9 +35,6 @@ namespace BallGame.Player.Controller
             CurrentState = moveState;
             CurrentState.Enter();
             
-            HeadCollider.enabled = false;
-            LeftFootCollider.enabled = false;
-            RightFootCollider.enabled = false;
         }
 
         
@@ -61,28 +61,24 @@ namespace BallGame.Player.Controller
 
         public void OnHead()
         {
-            HeadCollider.enabled = true;
             CurrentHitMove = E_HitVersions.head;
             HitTime = _hitCoyoteTime;
         }
         
         public void OnChest()
         {
-            ChestCollider.enabled = true;
             CurrentHitMove = E_HitVersions.chest;
             HitTime = _hitCoyoteTime;
         }
 
         public void OnLeftFoot()
         {
-            LeftFootCollider.enabled = true;
             CurrentHitMove = E_HitVersions.left;
             HitTime = _hitCoyoteTime;
         }
 
         public void OnRightFoot()
         {
-            RightFootCollider.enabled = true;
             CurrentHitMove = E_HitVersions.right;
             HitTime = _hitCoyoteTime;
         }
@@ -94,13 +90,7 @@ namespace BallGame.Player.Controller
 
         public void ResetCoyoteTime()
         {
-            HitTime = 0;
-            
-            // Disable all the colliders after the reset time
-            HeadCollider.enabled = false;
-            LeftFootCollider.enabled = false;
-            RightFootCollider.enabled = false;
-            ChestCollider.enabled = false;
+            HitTime = 0;           
         }
     }
 }
