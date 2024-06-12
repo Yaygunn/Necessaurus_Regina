@@ -132,6 +132,15 @@ public partial class @Keys: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChestHit"",
+                    ""type"": ""Button"",
+                    ""id"": ""68c874ed-abc7-42ef-906a-207245d565d4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -200,6 +209,17 @@ public partial class @Keys: IInputActionCollection2, IDisposable
                     ""action"": ""RightFoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8220013f-f6d9-4b32-9322-4a0e22b99103"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChestHit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -216,6 +236,7 @@ public partial class @Keys: IInputActionCollection2, IDisposable
         m_BallGame_HeadHit = m_BallGame.FindAction("HeadHit", throwIfNotFound: true);
         m_BallGame_LeftFoot = m_BallGame.FindAction("LeftFoot", throwIfNotFound: true);
         m_BallGame_RightFoot = m_BallGame.FindAction("RightFoot", throwIfNotFound: true);
+        m_BallGame_ChestHit = m_BallGame.FindAction("ChestHit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -335,6 +356,7 @@ public partial class @Keys: IInputActionCollection2, IDisposable
     private readonly InputAction m_BallGame_HeadHit;
     private readonly InputAction m_BallGame_LeftFoot;
     private readonly InputAction m_BallGame_RightFoot;
+    private readonly InputAction m_BallGame_ChestHit;
     public struct BallGameActions
     {
         private @Keys m_Wrapper;
@@ -343,6 +365,7 @@ public partial class @Keys: IInputActionCollection2, IDisposable
         public InputAction @HeadHit => m_Wrapper.m_BallGame_HeadHit;
         public InputAction @LeftFoot => m_Wrapper.m_BallGame_LeftFoot;
         public InputAction @RightFoot => m_Wrapper.m_BallGame_RightFoot;
+        public InputAction @ChestHit => m_Wrapper.m_BallGame_ChestHit;
         public InputActionMap Get() { return m_Wrapper.m_BallGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -364,6 +387,9 @@ public partial class @Keys: IInputActionCollection2, IDisposable
             @RightFoot.started += instance.OnRightFoot;
             @RightFoot.performed += instance.OnRightFoot;
             @RightFoot.canceled += instance.OnRightFoot;
+            @ChestHit.started += instance.OnChestHit;
+            @ChestHit.performed += instance.OnChestHit;
+            @ChestHit.canceled += instance.OnChestHit;
         }
 
         private void UnregisterCallbacks(IBallGameActions instance)
@@ -380,6 +406,9 @@ public partial class @Keys: IInputActionCollection2, IDisposable
             @RightFoot.started -= instance.OnRightFoot;
             @RightFoot.performed -= instance.OnRightFoot;
             @RightFoot.canceled -= instance.OnRightFoot;
+            @ChestHit.started -= instance.OnChestHit;
+            @ChestHit.performed -= instance.OnChestHit;
+            @ChestHit.canceled -= instance.OnChestHit;
         }
 
         public void RemoveCallbacks(IBallGameActions instance)
@@ -408,5 +437,6 @@ public partial class @Keys: IInputActionCollection2, IDisposable
         void OnHeadHit(InputAction.CallbackContext context);
         void OnLeftFoot(InputAction.CallbackContext context);
         void OnRightFoot(InputAction.CallbackContext context);
+        void OnChestHit(InputAction.CallbackContext context);
     }
 }

@@ -30,6 +30,12 @@ namespace Input.BallGame
             if (context.phase == InputActionPhase.Performed)
                 _playerController.OnHead();
         }
+        
+        public void OnChestHit(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+                _playerController.OnChest();
+        }
 
         public void OnLeftFoot(InputAction.CallbackContext context)
         {
