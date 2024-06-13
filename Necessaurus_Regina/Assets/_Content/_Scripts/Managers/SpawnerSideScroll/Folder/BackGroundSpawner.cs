@@ -42,6 +42,16 @@ namespace Manager.SideScroll.Spawner.BackGround
             obj.GetComponent<ScrollObject>().SetEndLine(_destroyX);
             obj.SetActive(true);
         }
-        
+
+        private void Start()
+        {
+            float xpos = _spawnX;
+            while(xpos > _destroyX)
+            {
+                Spawn(xpos);
+                xpos -= _DistanceBetweenSpawns;
+            }
+        }
+
     }
 }
