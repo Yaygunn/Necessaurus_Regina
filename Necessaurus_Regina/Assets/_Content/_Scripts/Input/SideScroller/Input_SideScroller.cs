@@ -28,6 +28,8 @@ namespace Input.SideScroller
         {
             if(context.phase == InputActionPhase.Performed)
                 _controller.OnCrouch();
+            else if (context.phase == InputActionPhase.Canceled)
+                _controller.OnEndCrouch();
         }
 
         public void OnJump(InputAction.CallbackContext context)

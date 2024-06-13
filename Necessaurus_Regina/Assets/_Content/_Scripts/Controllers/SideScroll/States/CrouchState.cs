@@ -15,8 +15,6 @@ namespace SideScroller.Player.Controller
         public override void Tick()
         {
             base.Tick();
-
-            _player.crouchComp.Tick();
         }
         public override void Exit() 
         {
@@ -32,6 +30,12 @@ namespace SideScroller.Player.Controller
         {
             base.OnCrouch();
             _player.TriggerCoyoteCrouch();
+        }
+
+        public override void OnEndCrouch()
+        {
+            base.OnEndCrouch();
+            _player.crouchComp.OnEndCrouchInput();
         }
 
         private void EndOfCrouch()

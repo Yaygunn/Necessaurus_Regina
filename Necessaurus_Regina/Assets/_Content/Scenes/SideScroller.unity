@@ -600,7 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32195579aa6355f4d8a3d3b3fe139356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _crouchEndTime: 0.75
+  _crouchEndTime: 0.1
 --- !u!1 &767896397
 GameObject:
   m_ObjectHideFlags: 0

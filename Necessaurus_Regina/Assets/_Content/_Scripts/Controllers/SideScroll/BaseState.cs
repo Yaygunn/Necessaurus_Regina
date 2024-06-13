@@ -13,6 +13,7 @@ namespace SideScroller.Player.Controller
         public virtual void Tick() { }
         public virtual void OnJump() { }
         public virtual void OnCrouch() { }
+        public virtual void OnEndCrouch() { }
         public virtual void Exit() { }
     }
 }

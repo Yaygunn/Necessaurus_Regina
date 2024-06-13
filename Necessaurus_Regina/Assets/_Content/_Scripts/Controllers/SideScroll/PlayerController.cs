@@ -66,6 +66,10 @@ namespace SideScroller.Player.Controller
         {
             CurrentState.OnCrouch();
         }
+        public void OnEndCrouch()
+        {
+            CurrentState.OnEndCrouch();
+        }
 
         public void TriggerCoyoteJump()
         {
