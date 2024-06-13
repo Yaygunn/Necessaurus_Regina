@@ -41,6 +41,7 @@ namespace SideScroller.Player.Controller
         {
             base.Exit(); 
             _lastStep = E_Step.none;
+            _player.shapeChanger.EmptyLeg();
         }
         public void RightStep()
         {
@@ -49,6 +50,7 @@ namespace SideScroller.Player.Controller
 
             _lastStep = E_Step.right;
             EventHub.PlayerStep();
+            _player.shapeChanger.RightStep();
         }
 
         public void LeftStep()
@@ -58,6 +60,7 @@ namespace SideScroller.Player.Controller
 
             _lastStep = E_Step.left;
             EventHub.PlayerStep();
+            _player.shapeChanger.LeftStep();
         }
     }
 }
