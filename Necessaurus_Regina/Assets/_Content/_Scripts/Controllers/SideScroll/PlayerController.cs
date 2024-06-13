@@ -48,11 +48,20 @@ namespace SideScroller.Player.Controller
             CurrentState.Enter();
         }
 
+        public void OnRightStep()
+        {
+            if(CurrentState == idleState)
+                idleState.RightStep();
+        }
+        public void OnLeftStep()
+        {
+            if (CurrentState == idleState)
+                idleState.LeftStep();
+        }
         public void OnJump()
         {
             CurrentState.OnJump();
         }
-
         public void OnCrouch()
         {
             CurrentState.OnCrouch();
