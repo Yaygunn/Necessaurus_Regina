@@ -48,7 +48,7 @@ namespace SideScroller.Player.Controller
                 return;
 
             _lastStep = E_Step.right;
-            Debug.Log("Right");
+            EventHub.PlayerStep();
         }
 
         public void LeftStep()
@@ -57,7 +57,7 @@ namespace SideScroller.Player.Controller
                 return;
 
             _lastStep = E_Step.left;
-            Debug.Log("Left");
+            EventHub.PlayerStep();
         }
     }
 }
