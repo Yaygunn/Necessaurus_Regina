@@ -35,5 +35,17 @@ namespace Input.SideScroller
             if (context.phase == InputActionPhase.Performed)
                 _controller.OnJump();
         }
+
+        public void OnRightStep(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+                _controller.OnRightStep();
+        }
+
+        public void OnLeftStep(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+                _controller.OnLeftStep();
+        }
     }
 }
