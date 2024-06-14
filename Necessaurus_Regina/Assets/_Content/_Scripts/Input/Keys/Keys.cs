@@ -44,6 +44,24 @@ public partial class @Keys: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightStep"",
+                    ""type"": ""Button"",
+                    ""id"": ""1be1ad56-65cd-4f11-8f34-3d07de1b0d76"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftStep"",
+                    ""type"": ""Button"",
+                    ""id"": ""f36dee78-c60e-429d-bbbc-f7c93322d30e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -88,6 +106,50 @@ public partial class @Keys: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5432566b-0ca9-47a5-b9cf-7cb227a8c86e"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightStep"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d90b448-a3f4-46b1-a48e-973462648f20"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightStep"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb31e81e-9c69-4889-ad1f-b15d2c63b4ab"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftStep"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e42bd8c-9408-408e-a900-9f73656eb758"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftStep"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -230,6 +292,8 @@ public partial class @Keys: IInputActionCollection2, IDisposable
         m_SideScroller = asset.FindActionMap("SideScroller", throwIfNotFound: true);
         m_SideScroller_Jump = m_SideScroller.FindAction("Jump", throwIfNotFound: true);
         m_SideScroller_Crouch = m_SideScroller.FindAction("Crouch", throwIfNotFound: true);
+        m_SideScroller_RightStep = m_SideScroller.FindAction("RightStep", throwIfNotFound: true);
+        m_SideScroller_LeftStep = m_SideScroller.FindAction("LeftStep", throwIfNotFound: true);
         // BallGame
         m_BallGame = asset.FindActionMap("BallGame", throwIfNotFound: true);
         m_BallGame_Move = m_BallGame.FindAction("Move", throwIfNotFound: true);
@@ -300,12 +364,16 @@ public partial class @Keys: IInputActionCollection2, IDisposable
     private List<ISideScrollerActions> m_SideScrollerActionsCallbackInterfaces = new List<ISideScrollerActions>();
     private readonly InputAction m_SideScroller_Jump;
     private readonly InputAction m_SideScroller_Crouch;
+    private readonly InputAction m_SideScroller_RightStep;
+    private readonly InputAction m_SideScroller_LeftStep;
     public struct SideScrollerActions
     {
         private @Keys m_Wrapper;
         public SideScrollerActions(@Keys wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_SideScroller_Jump;
         public InputAction @Crouch => m_Wrapper.m_SideScroller_Crouch;
+        public InputAction @RightStep => m_Wrapper.m_SideScroller_RightStep;
+        public InputAction @LeftStep => m_Wrapper.m_SideScroller_LeftStep;
         public InputActionMap Get() { return m_Wrapper.m_SideScroller; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -321,6 +389,12 @@ public partial class @Keys: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @RightStep.started += instance.OnRightStep;
+            @RightStep.performed += instance.OnRightStep;
+            @RightStep.canceled += instance.OnRightStep;
+            @LeftStep.started += instance.OnLeftStep;
+            @LeftStep.performed += instance.OnLeftStep;
+            @LeftStep.canceled += instance.OnLeftStep;
         }
 
         private void UnregisterCallbacks(ISideScrollerActions instance)
@@ -331,6 +405,12 @@ public partial class @Keys: IInputActionCollection2, IDisposable
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @RightStep.started -= instance.OnRightStep;
+            @RightStep.performed -= instance.OnRightStep;
+            @RightStep.canceled -= instance.OnRightStep;
+            @LeftStep.started -= instance.OnLeftStep;
+            @LeftStep.performed -= instance.OnLeftStep;
+            @LeftStep.canceled -= instance.OnLeftStep;
         }
 
         public void RemoveCallbacks(ISideScrollerActions instance)
@@ -430,6 +510,8 @@ public partial class @Keys: IInputActionCollection2, IDisposable
     {
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnRightStep(InputAction.CallbackContext context);
+        void OnLeftStep(InputAction.CallbackContext context);
     }
     public interface IBallGameActions
     {

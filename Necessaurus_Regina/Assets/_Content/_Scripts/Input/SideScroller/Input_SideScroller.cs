@@ -28,12 +28,26 @@ namespace Input.SideScroller
         {
             if(context.phase == InputActionPhase.Performed)
                 _controller.OnCrouch();
+            else if (context.phase == InputActionPhase.Canceled)
+                _controller.OnEndCrouch();
         }
 
         public void OnJump(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
                 _controller.OnJump();
+        }
+
+        public void OnRightStep(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+                _controller.OnRightStep();
+        }
+
+        public void OnLeftStep(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+                _controller.OnLeftStep();
         }
     }
 }

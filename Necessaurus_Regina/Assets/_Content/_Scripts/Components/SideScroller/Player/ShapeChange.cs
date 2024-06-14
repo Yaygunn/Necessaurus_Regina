@@ -8,6 +8,9 @@ namespace SideScroller.Components.ShapeChange
 
         [SerializeField] private GameObject _normal;
 
+        [Header("Legs")]
+        [SerializeField] private GameObject _leftlegActive;
+        [SerializeField] private GameObject _rightlegACtive;
 
         public void Crouch()
         {
@@ -19,6 +22,22 @@ namespace SideScroller.Components.ShapeChange
         {
             _crouch.SetActive(false);
             _normal.SetActive(true);
+        }
+
+        public void LeftStep()
+        {
+            _leftlegActive.SetActive(true);
+            _rightlegACtive.SetActive(false);
+        }
+        public void RightStep()
+        {
+            _leftlegActive.SetActive(false);
+            _rightlegACtive.SetActive(true);
+        }
+        public void EmptyLeg()
+        {
+            _leftlegActive.SetActive(false);
+            _rightlegACtive.SetActive(false);
         }
     }
 }

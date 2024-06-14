@@ -8,4 +8,10 @@ public static class EventHub
     {
         Event_MoveSpeed?.Invoke(speed);
     }
+
+    public static event Action Event_PlayerStep;
+    public static void PlayerStep()
+    {
+        Event_PlayerStep?.Invoke();
+    }
 }

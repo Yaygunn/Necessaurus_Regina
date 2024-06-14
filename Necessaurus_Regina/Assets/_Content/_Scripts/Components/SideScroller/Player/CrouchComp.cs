@@ -1,5 +1,6 @@
 using SideScroller.Components.ShapeChange;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace SideScroller.Components.Crouch
@@ -10,8 +11,6 @@ namespace SideScroller.Components.Crouch
 
         private ShapeChanger _shapeChanger;
 
-        private float _crouchTime;
-
         private Action _endAction;
         private void Start()
         {
@@ -21,17 +20,17 @@ namespace SideScroller.Components.Crouch
         public void StartCrouch(Action endCrouch)
         {
             _endAction = endCrouch;
-            _crouchTime = 0;
             _shapeChanger.Crouch();
         }
-
-        public void Tick()
+        public void OnEndCrouchInput()
         {
-            _crouchTime += Time.deltaTime;
-            if(_crouchTime > _crouchEndTime)
-                EndCrouch();
+            StartCoroutine(EndAction());
         }
-
+        private IEnumerator EndAction()
+        {
+            yield return new WaitForSeconds( _crouchEndTime );
+            EndCrouch();
+        }
         private void EndCrouch()
         {
             _shapeChanger.Normal();
