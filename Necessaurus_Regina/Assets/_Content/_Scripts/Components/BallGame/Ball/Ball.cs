@@ -51,11 +51,23 @@ namespace BallGame
             {
                 StartCoroutine(FreezeAndBounce());
             }
-
-            // ##TODO:
-            // Add in a condition for when the ball hits the flying bird
-            // Add in a condition for when the ball goes off screen, to be bounced back to the player
+            else if (other.CompareTag("Bird"))
+            {
+                HandleBirdHit(other.gameObject);
+            }
         }
+        
+        private void HandleBirdHit(GameObject bird)
+        {
+            Rigidbody2D birdRb = bird.GetComponent<Rigidbody2D>();
+            
+            if (birdRb != null)
+            {
+                birdRb.velocity = Vector2.zero;
+                birdRb.gravityScale = 1;
+            }
+        }
+
 
         IEnumerator FreezeAndBounce()
         {
