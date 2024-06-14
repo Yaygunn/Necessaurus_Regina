@@ -14,9 +14,12 @@ public class Ball : MonoBehaviour
     public float BounceForce = 8f;
     public float HeadBounceForce = 12f;
     public float BallGravityScale = 0.8f;
+    public float WallBounceUpwardForce = 0.4f;
     
     private Rigidbody2D rb;
     private PlayerController player;
+    private bool isFrozen = false;
+    private Vector3 playerPositionAtBounce;
 
     private void Start()
     {
@@ -45,11 +48,46 @@ public class Ball : MonoBehaviour
         {
             EndGame();
         }
+        else if (other.CompareTag("Wall") && !isFrozen)
+        {
+            StartCoroutine(FreezeAndBounce());
+        }
         
         // ##TODO:
         // Add in a condition for when the ball hits the flying bird
         // Add in a condition for when the ball goes off screen, to be bounced back to the player
     }
+    
+    IEnumerator FreezeAndBounce()
+    {
+        isFrozen = true;
+        
+        // Stop the ball from sliding down the wall
+        Vector2 originalVelocity = rb.velocity;
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        rb.isKinematic = true;
+        
+        yield return new WaitForSeconds(2f);
+        
+        // Perhaps we can make a singleton manager that always has a reference
+        // to the player object, that way we dont need to do this expensive query?
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerPositionAtBounce = player.transform.position;
+        }
+        
+        rb.isKinematic = false;
+
+        // Lets bounce the ball back towards the player with a slight incline and at a slower force
+        Vector2 directionToPlayer = (playerPositionAtBounce - transform.position).normalized;
+        directionToPlayer.y += WallBounceUpwardForce;
+        rb.AddForce(directionToPlayer * (BounceForce * 0.6f), ForceMode2D.Impulse);
+        
+        isFrozen = false;
+    }
+
 
     /**
      * Handles the direction and velocity of the ball
