@@ -44,7 +44,9 @@ namespace BallGame.Managers
         
         private void SpawnBird()
         {
-            Instantiate(BirdPrefab, SpawnPoint.position, Quaternion.identity);
+            GameObject newBird = Instantiate(BirdPrefab, SpawnPoint.position, Quaternion.identity);
+            BirdMovement birdFall = newBird.GetComponent<BirdMovement>();
+            birdFall.OnHitCallback = OnBirdHit;
         }
         
         public void OnBirdHit()

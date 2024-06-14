@@ -8,6 +8,7 @@ namespace BallGame
     public class BirdMovement : MonoBehaviour
     {
         public float FlySpeed = 2f;
+        public Action OnHitCallback;
         
         private void Update()
         {
@@ -26,6 +27,10 @@ namespace BallGame
             {
                 Debug.Log("Bird has hit the floor");
                 Destroy(gameObject);
+            }
+            else if (other.CompareTag("Ball"))
+            {
+                OnHitCallback?.Invoke();
             }
         }
     }
