@@ -17,6 +17,9 @@ namespace BallGame
         public float BallGravityScale = 0.8f;
         public float WallBounceUpwardForce = 0.4f;
 
+        [Header("Ball Scoring")]
+        public int PointsPerBounce = 1;
+
         private Rigidbody2D rb;
         private bool isFrozen = false;
         private Vector3 playerPositionAtBounce;
@@ -51,23 +54,7 @@ namespace BallGame
             {
                 StartCoroutine(FreezeAndBounce());
             }
-            else if (other.CompareTag("Bird"))
-            {
-                HandleBirdHit(other.gameObject);
-            }
         }
-        
-        private void HandleBirdHit(GameObject bird)
-        {
-            Rigidbody2D birdRb = bird.GetComponent<Rigidbody2D>();
-            
-            if (birdRb != null)
-            {
-                birdRb.velocity = Vector2.zero;
-                birdRb.gravityScale = 1;
-            }
-        }
-
 
         IEnumerator FreezeAndBounce()
         {
@@ -120,6 +107,8 @@ namespace BallGame
 
             Vector3 reflectDirection = Vector2.Reflect(rb.velocity, normal);
             rb.velocity = reflectDirection.normalized * impactBounceForce;
+            
+            BallScoreManager.Instance.AddScore(PointsPerBounce);
         }
 
         /**
