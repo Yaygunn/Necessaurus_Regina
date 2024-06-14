@@ -66,7 +66,7 @@ public class Ball : MonoBehaviour
         Vector2 originalVelocity = rb.velocity;
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
-        rb.isKinematic = true;
+        rb.Sleep();
         
         yield return new WaitForSeconds(2f);
         
@@ -78,7 +78,7 @@ public class Ball : MonoBehaviour
             playerPositionAtBounce = player.transform.position;
         }
         
-        rb.isKinematic = false;
+        rb.WakeUp();
 
         // Lets bounce the ball back towards the player with a slight incline and at a slower force
         Vector2 directionToPlayer = (playerPositionAtBounce - transform.position).normalized;
