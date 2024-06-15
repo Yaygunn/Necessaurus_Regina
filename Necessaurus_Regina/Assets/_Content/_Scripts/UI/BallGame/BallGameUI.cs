@@ -36,6 +36,13 @@ namespace BallGame.UI
             UpdateTimer(90);
         }
 
+        private void Update()
+        {
+            // I'm not sure if this is the best, maybe we should run this as an event
+            // and listen to every time the time updates?
+            UpdateTimer(BallLevelManager.Instance.GetTimeRemaining());
+        }
+
         private void UpdateScoreText(int score)
         {
             if (ScoreText == null)
