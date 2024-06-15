@@ -23,8 +23,15 @@ namespace BallGame.Managers
 
         private void Start()
         {
-            // Temp - will be called by the level manager once the game starts
-            StartSpawning();
+            // Hook into BallLevelManager's OnLevelStart event
+            BallLevelManager.Instance.OnLevelStart.AddListener(StartSpawning);
+            BallLevelManager.Instance.OnLevelEnd.AddListener(StopSpawning);
+        }
+        
+        private void OnDisable()
+        {
+            BallLevelManager.Instance.OnLevelStart.RemoveListener(StartSpawning);
+            BallLevelManager.Instance.OnLevelEnd.RemoveListener(StopSpawning);
         }
 
         public void StartSpawning()
@@ -53,11 +60,15 @@ namespace BallGame.Managers
         {
             if (StopSpawnOnKill)
             {
-                stopSpawning = true;
-                
-                StopCoroutine(SpawnBirds());
+                StopSpawning();
             }
         }
 
+        public void StopSpawning()
+        {
+            stopSpawning = true;
+                
+            StopCoroutine(SpawnBirds());
+        }
     }
 }

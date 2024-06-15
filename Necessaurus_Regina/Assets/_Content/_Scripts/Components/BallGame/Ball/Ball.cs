@@ -9,17 +9,22 @@ namespace BallGame
 {
     public class Ball : MonoBehaviour
     {
-        [Header("Ball bounce angles")] public float MinAngle = -8f;
-        public float MaxAngle = 8f;
+        [Header("Ball bounce angles")] public float MinAngle = -5f;
+        public float MaxAngle = 5f;
 
-        [Header("Ball bounce forces")] public float BounceForce = 8f;
-        public float HeadBounceForce = 12f;
+        [Header("Ball bounce forces")] 
+        public float BounceForce = 6f;
+        public float HeadBounceForce = 10f;
+        public float FeetBounceForce = 8f;
+        
         public float BallGravityScale = 0.8f;
-        public float WallBounceUpwardForce = 0.4f;
+        public float WallBounceUpwardForce = 0.8f;
 
         private Rigidbody2D rb;
-        private bool isFrozen = false;
         private Vector3 playerPositionAtBounce;
+        private int consecutiveHits = 0;
+        private bool isFrozen = false;
+        private bool thrownBackIn = false;
 
         private void Start()
         {
@@ -41,33 +46,43 @@ namespace BallGame
         {
             if (other.CompareTag("Player"))
             {
+                E_HitVersions currentHitType = BallLevelManager.Instance.Player.GetComponent<PlayerController>().CurrentHitMove;
+                BallActionType actionType = ConvertHitTypeToBallActionType(currentHitType);
+                
+                BallScoreManager.Instance.AddAction(actionType);
+                
                 BounceBall(other);
+                consecutiveHits++;
+
+                if (thrownBackIn)
+                {
+                    BallScoreManager.Instance.AddScore("Catch me outside");
+                    thrownBackIn = false;
+                }
+                
+                if (consecutiveHits == 5)
+                {
+                    BallScoreManager.Instance.AddScore("Five in a row");
+                    consecutiveHits = 0;
+                }
             }
             else if (other.CompareTag("Floor"))
             {
+                thrownBackIn = false;
+                consecutiveHits = 0;
                 EndGame();
             }
             else if (other.CompareTag("Wall") && !isFrozen)
             {
+                thrownBackIn = true;
+                consecutiveHits = 0;
                 StartCoroutine(FreezeAndBounce());
             }
             else if (other.CompareTag("Bird"))
             {
-                HandleBirdHit(other.gameObject);
+                consecutiveHits = 0;
             }
         }
-        
-        private void HandleBirdHit(GameObject bird)
-        {
-            Rigidbody2D birdRb = bird.GetComponent<Rigidbody2D>();
-            
-            if (birdRb != null)
-            {
-                birdRb.velocity = Vector2.zero;
-                birdRb.gravityScale = 1;
-            }
-        }
-
 
         IEnumerator FreezeAndBounce()
         {
@@ -104,22 +119,32 @@ namespace BallGame
             Vector2 normal = CalculateNormal(other);
             float angle = Vector2.SignedAngle(Vector2.up, normal);
 
-            Debug.Log("Hit Angle: " + angle);
-            Debug.DrawLine(transform.position, transform.position + (Vector3) normal, Color.red, 5f);
+            /*Debug.Log("Hit Angle: " + angle);
+            Debug.DrawLine(transform.position, transform.position + (Vector3) normal, Color.red, 5f);*/
 
             angle = Mathf.Clamp(angle, MinAngle, MaxAngle);
             normal = Quaternion.Euler(0, 0, angle) * Vector2.up;
 
-            Debug.Log("Corrected Angle: " + angle);
-            Debug.DrawLine(transform.position, transform.position + (Vector3) normal, Color.green, 5f);
+            /*Debug.Log("Corrected Angle: " + angle);
+            Debug.DrawLine(transform.position, transform.position + (Vector3) normal, Color.green, 5f);*/
 
-            float impactBounceForce =
-                (BallLevelManager.Instance.Player.GetComponent<PlayerController>().CurrentHitMove == E_HitVersions.head)
-                    ? HeadBounceForce
-                    : BounceForce;
+            float impactBounceForce = BounceForce;
+            
+            switch (BallLevelManager.Instance.Player.GetComponent<PlayerController>().CurrentHitMove)
+            {
+                case E_HitVersions.head:
+                    impactBounceForce = HeadBounceForce;
+                    break;
+                case E_HitVersions.left:
+                case E_HitVersions.right:
+                    impactBounceForce = FeetBounceForce;
+                    break;
+            }
 
             Vector3 reflectDirection = Vector2.Reflect(rb.velocity, normal);
             rb.velocity = reflectDirection.normalized * impactBounceForce;
+            
+            BallScoreManager.Instance.AddScore("Hit");
         }
 
         /**
@@ -148,6 +173,19 @@ namespace BallGame
             transform.position = new Vector3(0, 8.5f, 0);
             rb.velocity = Vector2.zero;
         }
+        
+        private BallActionType ConvertHitTypeToBallActionType(E_HitVersions hitType)
+        {
+            switch (hitType)
+            {
+                case E_HitVersions.left: return BallActionType.LeftFoot;
+                case E_HitVersions.right: return BallActionType.RightFoot;
+                case E_HitVersions.head: return BallActionType.Head;
+                case E_HitVersions.chest: return BallActionType.Chest;
+                default: return BallActionType.None;
+            }
+        }
+
 
         private void OnDrawGizmos()
         {

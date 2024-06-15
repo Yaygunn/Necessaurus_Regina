@@ -24,7 +24,6 @@ namespace Input.BallGame
             _input.BallGame.Disable();
         }
 
-
         public void OnHeadHit(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
@@ -46,13 +45,24 @@ namespace Input.BallGame
         public void OnMove(InputAction.CallbackContext context)
         {
             _playerController.OnMoveInput(context.ReadValue<float>());
-            
         }
 
         public void OnRightFoot(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
                 _playerController.OnRightFoot();
+        }
+        
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+                _playerController.OnJump();
+        }
+        
+        public void OnTurn(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+                _playerController.OnTurn();
         }
     }
 

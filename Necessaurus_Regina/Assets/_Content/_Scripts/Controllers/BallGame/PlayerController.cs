@@ -82,6 +82,16 @@ namespace BallGame.Player.Controller
             CurrentHitMove = E_HitVersions.right;
             HitTime = _hitCoyoteTime;
         }
+        
+        public void OnJump()
+        {
+            CurrentState.OnJump();
+        }
+        
+        public void OnTurn()
+        {
+            CurrentState.OnTurn();
+        }
 
         private void ReduceCoyoteTime()
         {
