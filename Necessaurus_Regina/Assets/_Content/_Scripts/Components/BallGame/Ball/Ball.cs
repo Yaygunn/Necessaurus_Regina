@@ -9,8 +9,8 @@ namespace BallGame
 {
     public class Ball : MonoBehaviour
     {
-        [Header("Ball bounce angles")] public float MinAngle = -6f;
-        public float MaxAngle = 6f;
+        [Header("Ball bounce angles")] public float MinAngle = -5f;
+        public float MaxAngle = 5f;
 
         [Header("Ball bounce forces")] 
         public float BounceForce = 6f;
@@ -18,10 +18,10 @@ namespace BallGame
         public float FeetBounceForce = 8f;
         
         public float BallGravityScale = 0.8f;
-        public float WallBounceUpwardForce = 0.4f;
+        public float WallBounceUpwardForce = 0.8f;
 
         [Header("Ball Scoring")]
-        public int PointsPerBounce = 1;
+        public int PointsPerBounce = 10;
 
         private Rigidbody2D rb;
         private bool isFrozen = false;

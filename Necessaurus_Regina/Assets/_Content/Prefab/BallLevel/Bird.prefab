@@ -109,7 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09392888ec77f4a408a6bab7b5cc005e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FlySpeed: 2
+  FlySpeed: 1.5
+  PointsForHit: 1000
 --- !u!1 &6165379276435826261
 GameObject:
   m_ObjectHideFlags: 0

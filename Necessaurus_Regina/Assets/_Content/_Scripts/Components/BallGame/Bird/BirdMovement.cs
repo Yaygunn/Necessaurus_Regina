@@ -9,10 +9,10 @@ namespace BallGame
     public class BirdMovement : MonoBehaviour
     {
         [Header("Bird Movement")]
-        public float FlySpeed = 2f;
+        public float FlySpeed = 1.5f;
 
         [Header("Bird Scoring")]
-        public int PointsForHit = 10;
+        public int PointsForHit = 1000;
         
         public Action OnHitCallback;
 
@@ -46,7 +46,6 @@ namespace BallGame
         {
             if (other.CompareTag("Floor"))
             {
-                Debug.Log("Bird has hit the floor");
                 Destroy(gameObject);
             }
             else if (other.CompareTag("Ball"))
