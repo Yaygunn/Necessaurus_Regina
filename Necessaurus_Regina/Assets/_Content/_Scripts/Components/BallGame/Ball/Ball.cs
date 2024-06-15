@@ -9,11 +9,14 @@ namespace BallGame
 {
     public class Ball : MonoBehaviour
     {
-        [Header("Ball bounce angles")] public float MinAngle = -8f;
-        public float MaxAngle = 8f;
+        [Header("Ball bounce angles")] public float MinAngle = -6f;
+        public float MaxAngle = 6f;
 
-        [Header("Ball bounce forces")] public float BounceForce = 8f;
-        public float HeadBounceForce = 12f;
+        [Header("Ball bounce forces")] 
+        public float BounceForce = 6f;
+        public float HeadBounceForce = 10f;
+        public float FeetBounceForce = 8f;
+        
         public float BallGravityScale = 0.8f;
         public float WallBounceUpwardForce = 0.4f;
 
@@ -100,10 +103,18 @@ namespace BallGame
             Debug.Log("Corrected Angle: " + angle);
             Debug.DrawLine(transform.position, transform.position + (Vector3) normal, Color.green, 5f);
 
-            float impactBounceForce =
-                (BallLevelManager.Instance.Player.GetComponent<PlayerController>().CurrentHitMove == E_HitVersions.head)
-                    ? HeadBounceForce
-                    : BounceForce;
+            float impactBounceForce = BounceForce;
+            
+            switch (BallLevelManager.Instance.Player.GetComponent<PlayerController>().CurrentHitMove)
+            {
+                case E_HitVersions.head:
+                    impactBounceForce = HeadBounceForce;
+                    break;
+                case E_HitVersions.left:
+                case E_HitVersions.right:
+                    impactBounceForce = FeetBounceForce;
+                    break;
+            }
 
             Vector3 reflectDirection = Vector2.Reflect(rb.velocity, normal);
             rb.velocity = reflectDirection.normalized * impactBounceForce;
