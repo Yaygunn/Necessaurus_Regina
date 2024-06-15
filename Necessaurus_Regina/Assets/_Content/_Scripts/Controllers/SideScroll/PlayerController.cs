@@ -4,6 +4,7 @@ using UnityEngine;
 using SideScroller.Components.Jump;
 using SideScroller.Components.Crouch;
 using SideScroller.Components.ShapeChange;
+using Manager.ScrollSpeedManager;
 
 namespace SideScroller.Player.Controller
 {
@@ -19,6 +20,8 @@ namespace SideScroller.Player.Controller
         public AirComp airComp { get; private set; }
         public CrouchComp crouchComp { get; private set; }
         public ShapeChanger shapeChanger { get; private set; }
+
+        public ScrollSpeedManager scrollSpeedManager { get; private set; }
         #endregion
 
         public float JumpCoyote {  get; private set; }
@@ -34,6 +37,7 @@ namespace SideScroller.Player.Controller
             airComp = GetComponent<AirComp>();
             crouchComp = GetComponent<CrouchComp>();
             shapeChanger = GetComponent<ShapeChanger>();
+            scrollSpeedManager = GetComponent<ScrollSpeedManager>();
 
             CurrentState = idleState;
             CurrentState.Enter();
