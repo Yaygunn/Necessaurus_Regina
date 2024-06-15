@@ -16,3 +16,4 @@ MonoBehaviour:
   MovePoints: 1000
   MoveDescription: shoot the bird
   ShowNameOnScore: 1
+  ActionSequence: 00000000

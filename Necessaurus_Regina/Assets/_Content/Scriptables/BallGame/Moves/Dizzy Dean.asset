@@ -16,3 +16,4 @@ MonoBehaviour:
   MovePoints: 1500
   MoveDescription: front header + rear header
   ShowNameOnScore: 1
+  ActionSequence: 030000000600000003000000

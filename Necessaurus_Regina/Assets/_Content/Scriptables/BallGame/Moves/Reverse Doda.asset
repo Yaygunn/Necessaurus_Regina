@@ -16,3 +16,4 @@ MonoBehaviour:
   MovePoints: 5000
   MoveDescription: right outer jerk + header + left outer jerk
   ShowNameOnScore: 1
+  ActionSequence: 020000000300000001000000

@@ -16,3 +16,4 @@ MonoBehaviour:
   MovePoints: 750
   MoveDescription: one and a half turns betweeen two shots
   ShowNameOnScore: 1
+  ActionSequence: 050000000800000005000000

@@ -16,3 +16,4 @@ MonoBehaviour:
   MovePoints: 2000
   MoveDescription: shot with the left or right foot during a jump
   ShowNameOnScore: 1
+  ActionSequence: 0900000001000000

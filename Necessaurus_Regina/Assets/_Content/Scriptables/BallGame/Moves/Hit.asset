@@ -16,3 +16,4 @@ MonoBehaviour:
   MovePoints: 10
   MoveDescription: every shot
   ShowNameOnScore: 0
+  ActionSequence: 00000000

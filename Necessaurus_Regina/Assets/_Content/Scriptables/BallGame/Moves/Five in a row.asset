@@ -15,3 +15,5 @@ MonoBehaviour:
   MoveName: Five in a row
   MovePoints: 750
   MoveDescription: five shots in succession
+  ShowNameOnScore: 0
+  ActionSequence: 00000000

@@ -10,4 +10,5 @@ public class BallMove : ScriptableObject
     public int MovePoints;
     public string MoveDescription;
     public bool ShowNameOnScore;
+    public List<BallActionType> ActionSequence;
 }

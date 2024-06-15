@@ -21,8 +21,10 @@ namespace BallGame
         public float WallBounceUpwardForce = 0.8f;
 
         private Rigidbody2D rb;
-        private bool isFrozen = false;
         private Vector3 playerPositionAtBounce;
+        private int consecutiveHits = 0;
+        private bool isFrozen = false;
+        private bool thrownBackIn = false;
 
         private void Start()
         {
@@ -44,15 +46,41 @@ namespace BallGame
         {
             if (other.CompareTag("Player"))
             {
+                E_HitVersions currentHitType = BallLevelManager.Instance.Player.GetComponent<PlayerController>().CurrentHitMove;
+                BallActionType actionType = ConvertHitTypeToBallActionType(currentHitType);
+                
+                BallScoreManager.Instance.AddAction(actionType);
+                
                 BounceBall(other);
+                consecutiveHits++;
+
+                if (thrownBackIn)
+                {
+                    BallScoreManager.Instance.AddScore("Catch me outside");
+                    thrownBackIn = false;
+                }
+                
+                if (consecutiveHits == 5)
+                {
+                    BallScoreManager.Instance.AddScore("Five in a row");
+                    consecutiveHits = 0;
+                }
             }
             else if (other.CompareTag("Floor"))
             {
+                thrownBackIn = false;
+                consecutiveHits = 0;
                 EndGame();
             }
             else if (other.CompareTag("Wall") && !isFrozen)
             {
+                thrownBackIn = true;
+                consecutiveHits = 0;
                 StartCoroutine(FreezeAndBounce());
+            }
+            else if (other.CompareTag("Bird"))
+            {
+                consecutiveHits = 0;
             }
         }
 
@@ -91,14 +119,14 @@ namespace BallGame
             Vector2 normal = CalculateNormal(other);
             float angle = Vector2.SignedAngle(Vector2.up, normal);
 
-            Debug.Log("Hit Angle: " + angle);
-            Debug.DrawLine(transform.position, transform.position + (Vector3) normal, Color.red, 5f);
+            /*Debug.Log("Hit Angle: " + angle);
+            Debug.DrawLine(transform.position, transform.position + (Vector3) normal, Color.red, 5f);*/
 
             angle = Mathf.Clamp(angle, MinAngle, MaxAngle);
             normal = Quaternion.Euler(0, 0, angle) * Vector2.up;
 
-            Debug.Log("Corrected Angle: " + angle);
-            Debug.DrawLine(transform.position, transform.position + (Vector3) normal, Color.green, 5f);
+            /*Debug.Log("Corrected Angle: " + angle);
+            Debug.DrawLine(transform.position, transform.position + (Vector3) normal, Color.green, 5f);*/
 
             float impactBounceForce = BounceForce;
             
@@ -145,6 +173,19 @@ namespace BallGame
             transform.position = new Vector3(0, 8.5f, 0);
             rb.velocity = Vector2.zero;
         }
+        
+        private BallActionType ConvertHitTypeToBallActionType(E_HitVersions hitType)
+        {
+            switch (hitType)
+            {
+                case E_HitVersions.left: return BallActionType.LeftFoot;
+                case E_HitVersions.right: return BallActionType.RightFoot;
+                case E_HitVersions.head: return BallActionType.Head;
+                case E_HitVersions.chest: return BallActionType.Chest;
+                default: return BallActionType.None;
+            }
+        }
+
 
         private void OnDrawGizmos()
         {

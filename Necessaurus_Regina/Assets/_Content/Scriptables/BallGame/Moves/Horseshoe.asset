@@ -16,3 +16,4 @@ MonoBehaviour:
   MovePoints: 500
   MoveDescription: left heel shot + right heel shot
   ShowNameOnScore: 1
+  ActionSequence: 0100000002000000
