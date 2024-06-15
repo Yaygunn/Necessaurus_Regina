@@ -8,7 +8,8 @@ namespace BallGame.Managers
     public class BallScoreManager : MonoBehaviour
     {
         public static BallScoreManager Instance;
-        public UnityEvent<int> OnScoreChange;
+        public BallMovesDatabase BallMovesDatabase;
+        public UnityEvent<int, BallMove> OnScoreChange;
 
         private int score;
 
@@ -23,13 +24,21 @@ namespace BallGame.Managers
                 Destroy(gameObject);
             }
             
-            OnScoreChange = new UnityEvent<int>();
+            OnScoreChange = new UnityEvent<int, BallMove>();
         }
 
-        public void AddScore(int points)
+        public void AddScore(string moveName)
         {
-            score += points;
-            OnScoreChange.Invoke(score);    
+            BallMove move = BallMovesDatabase.BallMoves.Find(x => x.MoveName == moveName);
+            if (move != null)
+            {
+                score += move.MovePoints;
+                OnScoreChange.Invoke(score, move);
+            }
+            else
+            {
+                Debug.LogError($"Move {moveName} not found in the database.");
+            }
         }
 
         public int GetScore()

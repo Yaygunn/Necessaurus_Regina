@@ -953,6 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30101c8b05f8e7e418f02dc563065b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BallMovesDatabase: {fileID: 11400000, guid: 4727e7ae1affc9e4db95b47ab610f6d0, type: 2}
   OnScoreChange:
     m_PersistentCalls:
       m_Calls: []
@@ -1815,7 +1816,6 @@ MonoBehaviour:
   FeetBounceForce: 8
   BallGravityScale: 0.8
   WallBounceUpwardForce: 0.8
-  PointsPerBounce: 10
 --- !u!58 &1155546413
 CircleCollider2D:
   m_ObjectHideFlags: 0

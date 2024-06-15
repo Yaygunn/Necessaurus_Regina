@@ -15,3 +15,4 @@ MonoBehaviour:
   MoveName: Head Beanger
   MovePoints: 1500
   MoveDescription: rear header + front header
+  ShowNameOnScore: 1

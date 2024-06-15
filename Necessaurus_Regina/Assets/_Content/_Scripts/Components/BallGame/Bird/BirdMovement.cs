@@ -10,9 +10,6 @@ namespace BallGame
     {
         [Header("Bird Movement")]
         public float FlySpeed = 1.5f;
-
-        [Header("Bird Scoring")]
-        public int PointsForHit = 1000;
         
         public Action OnHitCallback;
 
@@ -33,7 +30,7 @@ namespace BallGame
             birdRb.velocity = Vector2.zero;
             birdRb.gravityScale = 1;
             
-            BallScoreManager.Instance.AddScore(PointsForHit);
+            BallScoreManager.Instance.AddScore("Fowl");
         }
         
         private void OnBecameInvisible()

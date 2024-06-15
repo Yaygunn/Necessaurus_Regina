@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f33519c8c4e1e434cbf905b602c6bdf8, type: 3}
-  m_Name: Double Arch
+  m_Name: Hit
   m_EditorClassIdentifier: 
-  MoveName: Double Arch
-  MovePoints: 2500
-  MoveDescription: left + right + left outer jerk
-  ShowNameOnScore: 1
+  MoveName: Hit
+  MovePoints: 10
+  MoveDescription: every shot
+  ShowNameOnScore: 0

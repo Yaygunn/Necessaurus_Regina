@@ -15,3 +15,4 @@ MonoBehaviour:
   MoveName: Reverse Doda
   MovePoints: 5000
   MoveDescription: right outer jerk + header + left outer jerk
+  ShowNameOnScore: 1

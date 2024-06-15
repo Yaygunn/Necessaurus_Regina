@@ -20,9 +20,6 @@ namespace BallGame
         public float BallGravityScale = 0.8f;
         public float WallBounceUpwardForce = 0.8f;
 
-        [Header("Ball Scoring")]
-        public int PointsPerBounce = 10;
-
         private Rigidbody2D rb;
         private bool isFrozen = false;
         private Vector3 playerPositionAtBounce;
@@ -119,7 +116,7 @@ namespace BallGame
             Vector3 reflectDirection = Vector2.Reflect(rb.velocity, normal);
             rb.velocity = reflectDirection.normalized * impactBounceForce;
             
-            BallScoreManager.Instance.AddScore(PointsPerBounce);
+            BallScoreManager.Instance.AddScore("Hit");
         }
 
         /**

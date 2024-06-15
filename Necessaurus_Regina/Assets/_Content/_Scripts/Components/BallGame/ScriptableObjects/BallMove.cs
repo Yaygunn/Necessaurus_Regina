@@ -9,4 +9,5 @@ public class BallMove : ScriptableObject
     public string MoveName;
     public int MovePoints;
     public string MoveDescription;
+    public bool ShowNameOnScore;
 }

@@ -15,3 +15,4 @@ MonoBehaviour:
   MoveName: Half Axle
   MovePoints: 250
   MoveDescription: half turn between two shots
+  ShowNameOnScore: 1

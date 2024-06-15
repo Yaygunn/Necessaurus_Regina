@@ -15,3 +15,4 @@ MonoBehaviour:
   MoveName: Horseshoe
   MovePoints: 500
   MoveDescription: left heel shot + right heel shot
+  ShowNameOnScore: 1

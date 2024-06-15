@@ -43,14 +43,29 @@ namespace BallGame.UI
             UpdateTimer(BallLevelManager.Instance.GetTimeRemaining());
         }
 
-        private void UpdateScoreText(int score)
+        private void UpdateScoreText(int score, BallMove move = null)
         {
             if (ScoreText == null)
                 return;
             
             ScoreText.text = score.ToString();
+
+            if (move != null)
+            {
+                if (move.ShowNameOnScore)
+                {
+                    UpdateMove(move.MoveName, move.MovePoints.ToString());
+                    StartCoroutine(ClearMoveText());
+                }   
+            }
         }
-        
+
+        private IEnumerator ClearMoveText()
+        {
+            yield return new WaitForSeconds(2);
+            UpdateMove("", "");
+        }
+
         private void UpdateMove(string moveName, string points)
         {
             MoveNameText.text = moveName;
