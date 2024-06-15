@@ -29,6 +29,7 @@ namespace SideScroller.Components.Jump
             {
                 _speedCurrent = _speedAtJumpStart;
                 _tick = AscentTick;
+                EventHub.PlayerJump();
             }
             else
             {
