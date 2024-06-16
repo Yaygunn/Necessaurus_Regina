@@ -9,10 +9,16 @@ public class MainMenuManager : MonoBehaviour
     public GameObject playScreen;
     public GameObject settingsScreen;
     public GameObject creditsScreen;
+    public List<CreditsPerson> creditsPeople = new List<CreditsPerson>();
+    public CreditPersonEntry creditPersonEntryPrefab;
+    public Transform creditsContainer;
 
     private void Start()
     {
         ShowScreen("Menu");
+        
+        // Initialize credits once off
+        LoadCredits();
     }
     
     public void ShowScreen(string screen)
@@ -38,5 +44,14 @@ public class MainMenuManager : MonoBehaviour
     public void LoadScene(int sceneId)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneId);
+    }
+
+    private void LoadCredits()
+    {
+        foreach (CreditsPerson person in creditsPeople)
+        {
+            CreditPersonEntry creditPersonEntry = Instantiate(creditPersonEntryPrefab, creditsContainer);
+            creditPersonEntry.Initialize(person);
+        }
     }
 }
