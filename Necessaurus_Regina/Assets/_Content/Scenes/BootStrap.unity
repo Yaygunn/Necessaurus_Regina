@@ -157,7 +157,7 @@ MonoBehaviour:
   - Desktop/Master.strings
   - Desktop/Music
   - Desktop/Sound Effects
-  Scene: SideScroller
+  Scene: MainMenu
 --- !u!4 &1379337486
 Transform:
   m_ObjectHideFlags: 0
@@ -183,8 +183,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2052841332}
   - component: {fileID: 2052841331}
-  - component: {fileID: 2052841330}
   - component: {fileID: 2052841333}
+  - component: {fileID: 2052841334}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -192,14 +192,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2052841330
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052841329}
-  m_Enabled: 1
 --- !u!20 &2052841331
 Camera:
   m_ObjectHideFlags: 0
@@ -310,6 +302,19 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &2052841334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052841329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
