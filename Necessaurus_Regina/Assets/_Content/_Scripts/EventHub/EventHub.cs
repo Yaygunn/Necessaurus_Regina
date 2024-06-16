@@ -14,4 +14,10 @@ public static class EventHub
     {
         Event_PlayerStep?.Invoke();
     }
+
+    public static event Action Event_PlayerJump;
+    public static void PlayerJump()
+    {
+        Event_PlayerJump?.Invoke();
+    }
 }
