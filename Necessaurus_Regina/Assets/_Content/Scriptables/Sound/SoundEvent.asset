@@ -47,6 +47,20 @@ MonoBehaviour:
       Data3: 1822392511
       Data4: 1183168854
     Path: event:/SFX/Footvolley/BallKick
+  <BallHeadHit>k__BackingField:
+    Guid:
+      Data1: -1449796332
+      Data2: 1160404295
+      Data3: -1954898041
+      Data4: 1187929951
+    Path: event:/SFX/Footvolley/BallHead
+  <BallChestHit>k__BackingField:
+    Guid:
+      Data1: 139010697
+      Data2: 1272478001
+      Data3: -1304990837
+      Data4: -95423525
+    Path: event:/SFX/Footvolley/BallChest
   <Music>k__BackingField:
     Guid:
       Data1: -582322521

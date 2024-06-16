@@ -16,6 +16,11 @@ namespace Audio.Events
 
         [field:SerializeField] public EventReference BallKick { get; private set; }
 
+        [field: SerializeField] public EventReference BallHeadHit { get; private set; }
+
+        [field: SerializeField] public EventReference BallChestHit { get; private set; }
+
+
         [field:SerializeField] public EventReference Music { get; private set; }
     }
 }

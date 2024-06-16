@@ -54,7 +54,24 @@ namespace Audio.BallGame
 
         private void OnBallHitPlayer(E_HitVersions hitVersion)
         {
-            _com.PlayOneShot(_data.BallKick);
+            switch (hitVersion)
+            {
+                case E_HitVersions.head:
+                    _com.PlayOneShot(_data.BallHeadHit);
+                    break;
+
+                case E_HitVersions.chest:
+                    _com.PlayOneShot(_data.BallChestHit); 
+                    break;
+
+                case E_HitVersions.left:
+                case E_HitVersions.right:
+                    _com.PlayOneShot(_data.BallKick);
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }
