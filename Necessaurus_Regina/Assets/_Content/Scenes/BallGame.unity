@@ -150,7 +150,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1265863501}
@@ -1376,7 +1376,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1175876765}
@@ -1865,7 +1865,7 @@ MonoBehaviour:
   HeadBounceForce: 10
   FeetBounceForce: 8
   BallGravityScale: 0.8
-  WallBounceUpwardForce: 0.8
+  WallBounceUpwardForce: 1.8
 --- !u!58 &1155546413
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1943,7 +1943,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175876764}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1970,7 +1970,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.35
 --- !u!114 &1175876767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1983,7 +1983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d53ec3910c6434f97d753c6c264abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionEndTime: 0.2
+  _collisionEndTime: 0.5
   _moveEndTime: 0.1
 --- !u!114 &1175876768
 MonoBehaviour:
@@ -2083,7 +2083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d53ec3910c6434f97d753c6c264abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionEndTime: 0.2
+  _collisionEndTime: 0.5
   _moveEndTime: 0.1
 --- !u!114 &1188612609
 MonoBehaviour:
@@ -2160,7 +2160,7 @@ Transform:
   m_GameObject: {fileID: 1228516169}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.619, z: 0}
+  m_LocalPosition: {x: 0, y: 0.469, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2174,7 +2174,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228516169}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -2201,7 +2201,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.45
 --- !u!114 &1228516172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2214,7 +2214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d53ec3910c6434f97d753c6c264abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionEndTime: 0.2
+  _collisionEndTime: 0.5
   _moveEndTime: 0.1
 --- !u!114 &1228516173
 MonoBehaviour:
@@ -2274,7 +2274,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265863500}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -2301,7 +2301,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.35
 --- !u!114 &1265863503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2314,7 +2314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d53ec3910c6434f97d753c6c264abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionEndTime: 0.2
+  _collisionEndTime: 0.5
   _moveEndTime: 0.1
 --- !u!114 &1265863504
 MonoBehaviour:
@@ -3380,7 +3380,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1228516170}
