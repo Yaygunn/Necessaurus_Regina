@@ -1,3 +1,4 @@
+using Audio.BallGame;
 using Audio.Events;
 using Audio.FmodCommunication;
 using Audio.Scroller;
@@ -15,6 +16,8 @@ namespace Manager.Audio
         private FModCommunication _fmodCommunication;
 
         private ScrollerAudio _scrollerAudio;
+
+        private BallGameAudio _ballGameAudio;
         private void Awake()
         {
             if(instance == null)
@@ -32,7 +35,11 @@ namespace Manager.Audio
 
             _scrollerAudio = new ScrollerAudio(_fmodCommunication, _eventBindingSO);
 
-            _scrollerAudio.Activate();
+            _ballGameAudio = new BallGameAudio(_fmodCommunication, _eventBindingSO);
+
+            //_scrollerAudio.Activate();
+
+            _ballGameAudio.Activate();
         }
 
     }

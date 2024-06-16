@@ -7,5 +7,7 @@ namespace Audio.Events
     public class EventBindingSO : ScriptableObject
     {
         [field:SerializeField] public EventReference Jump { get; private set; }
+
+        [field:SerializeField] public EventReference BirdHit { get; private set; }
     }
 }

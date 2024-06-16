@@ -29,7 +29,8 @@ namespace BallGame
         {
             birdRb.velocity = Vector2.zero;
             birdRb.gravityScale = 1;
-            
+
+            EventHub.BallBirdHit();
             BallScoreManager.Instance.AddScore("Fowl");
         }
         

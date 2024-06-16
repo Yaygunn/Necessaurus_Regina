@@ -19,3 +19,10 @@ MonoBehaviour:
       Data3: -597589074
       Data4: -417344593
     Path: event:/SFX/Jogging/DogHit
+  <BirdHit>k__BackingField:
+    Guid:
+      Data1: -1943385766
+      Data2: 1256531723
+      Data3: -1077761405
+      Data4: -44513256
+    Path: event:/SFX/Footvolley/PigeonHit

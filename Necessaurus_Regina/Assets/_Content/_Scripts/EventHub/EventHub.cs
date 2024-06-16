@@ -3,6 +3,7 @@ using UnityEngine;
 
 public static class EventHub 
 {
+    #region Player Events
     public static event Action<float> Event_MoveSpeed;
     public static void MoveSpeed(float speed)
     {
@@ -20,4 +21,22 @@ public static class EventHub
     {
         Event_PlayerJump?.Invoke();
     }
+
+    #endregion
+
+    #region Ball Events
+
+    public static event Action Event_BallWallHit;
+    public static void BallWallHit()
+    {
+        Event_BallWallHit?.Invoke();
+    }
+
+    public static event Action Event_BallBirdHit;
+    public static void BallBirdHit()
+    {
+        Event_BallBirdHit?.Invoke();
+    }
+
+    #endregion
 }
