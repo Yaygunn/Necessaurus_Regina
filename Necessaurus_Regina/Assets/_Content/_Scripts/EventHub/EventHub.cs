@@ -52,4 +52,26 @@ public static class EventHub
     }
 
     #endregion
+
+    #region LevelStart
+
+    public static event Action Event_StartMenu;
+    public static void StartMenu()
+    {
+        Event_StartMenu?.Invoke();
+    }
+
+    public static event Action Event_StartScrollerLevel;
+    public static void StartScrollerLevel()
+    {
+        Event_StartScrollerLevel?.Invoke();
+    }
+
+    public static event Action Event_StartBallGameLevel;
+    public static void StartBallGameLevel()
+    {
+        Event_StartBallGameLevel?.Invoke();
+    }
+
+    #endregion
 }

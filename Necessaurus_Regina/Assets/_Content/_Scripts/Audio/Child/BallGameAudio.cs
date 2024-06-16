@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Audio.BallGame
 {
-    public class BallGameAudio : MonoBehaviour
+    public class BallGameAudio
     {
         public BallGameAudio(FModCommunication com, EventBindingSO data)
         {
