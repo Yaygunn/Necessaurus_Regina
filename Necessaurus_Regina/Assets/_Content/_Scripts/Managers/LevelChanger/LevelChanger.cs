@@ -5,17 +5,39 @@ namespace Manager.LevelChanger
 {
     public class LevelChanger : MonoBehaviour
     {
-        [SerializeField] private bool _reload;
+        public static LevelChanger Instance { get; private set; }
 
-        private bool _reloadEnabled = false;
-
-        void Update()
+        private void Awake()
         {
-            if (_reload && !_reloadEnabled)
+            if(Instance == null)
             {
-                _reloadEnabled = true;
-                SceneManager.LoadScene(0);
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
+        public void OpenMainMenu()
+        {
+            ChangeLevel("MainMenu");
+        }
+
+        public void OpenSideScrollGame()
+        {
+            ChangeLevel("SideScroller");
+        }
+
+        public void OpenBallGame()
+        {
+            ChangeLevel("BallGame");
+        }
+
+        private void ChangeLevel(string newLevel)
+        {
+            SceneManager.LoadScene(newLevel);
+        }
+
     }
 }
