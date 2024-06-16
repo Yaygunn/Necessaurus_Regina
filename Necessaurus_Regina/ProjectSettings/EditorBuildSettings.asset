@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Content/Scenes/MainMenu.unity
+    guid: 02f66081369bb704bafa31812cba9195
+  - enabled: 1
     path: Assets/_Content/Scenes/SideScroller.unity
     guid: 44cb1adf5fba82b49be1f76df7f3a0f6
+  - enabled: 1
+    path: Assets/_Content/Scenes/BallGame.unity
+    guid: fe20b78a328a0f84eb784c1c48695967
   m_configObjects: {}
