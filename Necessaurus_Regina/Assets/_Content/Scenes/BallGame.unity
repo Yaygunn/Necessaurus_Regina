@@ -1862,6 +1862,7 @@ GameObject:
   - component: {fileID: 1175876765}
   - component: {fileID: 1175876766}
   - component: {fileID: 1175876767}
+  - component: {fileID: 1175876768}
   m_Layer: 3
   m_Name: RightFoot
   m_TagString: Player
@@ -1934,6 +1935,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collisionEndTime: 0.2
   _moveEndTime: 0.1
+--- !u!114 &1175876768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175876764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c4016e6035e3b4c94d6d4104b24434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bounceForce: 8
+  _minAngle: -5
+  _maxAngle: 5
 --- !u!1 &1188612605
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,6 +1961,7 @@ GameObject:
   - component: {fileID: 1188612606}
   - component: {fileID: 1188612607}
   - component: {fileID: 1188612608}
+  - component: {fileID: 1188612609}
   m_Layer: 3
   m_Name: Head
   m_TagString: Player
@@ -2017,6 +2034,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collisionEndTime: 0.2
   _moveEndTime: 0.1
+--- !u!114 &1188612609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188612605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c4016e6035e3b4c94d6d4104b24434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bounceForce: 10
+  _minAngle: -5
+  _maxAngle: 5
 --- !u!1 &1221619261
 GameObject:
   m_ObjectHideFlags: 0
@@ -2059,6 +2091,7 @@ GameObject:
   - component: {fileID: 1228516170}
   - component: {fileID: 1228516171}
   - component: {fileID: 1228516172}
+  - component: {fileID: 1228516173}
   m_Layer: 3
   m_Name: Chest
   m_TagString: Player
@@ -2131,6 +2164,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collisionEndTime: 0.2
   _moveEndTime: 0.1
+--- !u!114 &1228516173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228516169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c4016e6035e3b4c94d6d4104b24434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bounceForce: 6
+  _minAngle: -5
+  _maxAngle: 5
 --- !u!1 &1265863500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2142,6 +2190,7 @@ GameObject:
   - component: {fileID: 1265863501}
   - component: {fileID: 1265863502}
   - component: {fileID: 1265863503}
+  - component: {fileID: 1265863504}
   m_Layer: 3
   m_Name: LeftFoot
   m_TagString: Player
@@ -2214,6 +2263,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collisionEndTime: 0.2
   _moveEndTime: 0.1
+--- !u!114 &1265863504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265863500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c4016e6035e3b4c94d6d4104b24434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bounceForce: 8
+  _minAngle: -5
+  _maxAngle: 5
 --- !u!1 &1288917633
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ namespace BallGame
         public float BallGravityScale = 0.8f;
         public float WallBounceUpwardForce = 0.8f;
 
-        private Rigidbody2D rb;
+        public Rigidbody2D rb {  get; private set; }
         private Vector3 playerPositionAtBounce;
         private int consecutiveHits = 0;
         private bool isFrozen = false;
@@ -46,12 +46,6 @@ namespace BallGame
         {
             if (other.CompareTag("Player"))
             {
-                E_HitVersions currentHitType = BallLevelManager.Instance.Player.GetComponent<PlayerController>().CurrentHitMove;
-                BallActionType actionType = ConvertHitTypeToBallActionType(currentHitType);
-                
-                BallScoreManager.Instance.AddAction(actionType);
-                
-                BounceBall(other);
                 consecutiveHits++;
 
                 if (thrownBackIn)
@@ -65,22 +59,29 @@ namespace BallGame
                     BallScoreManager.Instance.AddScore("Five in a row");
                     consecutiveHits = 0;
                 }
+                return;
             }
-            else if (other.CompareTag("Floor"))
+
+            if (other.CompareTag("Floor"))
             {
                 thrownBackIn = false;
                 consecutiveHits = 0;
                 EndGame();
+                return;
             }
-            else if (other.CompareTag("Wall") && !isFrozen)
+            
+            if (other.CompareTag("Wall") && !isFrozen)
             {
                 thrownBackIn = true;
                 consecutiveHits = 0;
                 StartCoroutine(FreezeAndBounce());
+                return;
             }
-            else if (other.CompareTag("Bird"))
+            
+            if (other.CompareTag("Bird"))
             {
                 consecutiveHits = 0;
+                return;
             }
         }
 
@@ -114,45 +115,9 @@ namespace BallGame
          * when it touches the player and bounces off.
          * I've included some debug lines to show the normal angle and corrected angle
          */
-        private void BounceBall(Collider2D other)
+        public void BounceBall(Vector3 newSpeed)
         {
-            Vector2 normal = CalculateNormal(other);
-            float angle = Vector2.SignedAngle(Vector2.up, normal);
-
-            /*Debug.Log("Hit Angle: " + angle);
-            Debug.DrawLine(transform.position, transform.position + (Vector3) normal, Color.red, 5f);*/
-
-            angle = Mathf.Clamp(angle, MinAngle, MaxAngle);
-            normal = Quaternion.Euler(0, 0, angle) * Vector2.up;
-
-            /*Debug.Log("Corrected Angle: " + angle);
-            Debug.DrawLine(transform.position, transform.position + (Vector3) normal, Color.green, 5f);*/
-
-            float impactBounceForce = BounceForce;
-            
-            switch (BallLevelManager.Instance.Player.GetComponent<PlayerController>().CurrentHitMove)
-            {
-                case E_HitVersions.head:
-                    impactBounceForce = HeadBounceForce;
-                    break;
-                case E_HitVersions.left:
-                case E_HitVersions.right:
-                    impactBounceForce = FeetBounceForce;
-                    break;
-            }
-
-            Vector3 reflectDirection = Vector2.Reflect(rb.velocity, normal);
-            rb.velocity = reflectDirection.normalized * impactBounceForce;
-            
-            BallScoreManager.Instance.AddScore("Hit");
-        }
-
-        /**
-         * Return the normalized vector between the ball and the collided object
-         */
-        private Vector2 CalculateNormal(Collider2D other)
-        {
-            return (transform.position - other.transform.position).normalized;
+            rb.velocity = newSpeed;          
         }
 
         /**
@@ -174,17 +139,7 @@ namespace BallGame
             rb.velocity = Vector2.zero;
         }
         
-        private BallActionType ConvertHitTypeToBallActionType(E_HitVersions hitType)
-        {
-            switch (hitType)
-            {
-                case E_HitVersions.left: return BallActionType.LeftFoot;
-                case E_HitVersions.right: return BallActionType.RightFoot;
-                case E_HitVersions.head: return BallActionType.Head;
-                case E_HitVersions.chest: return BallActionType.Chest;
-                default: return BallActionType.None;
-            }
-        }
+        
 
 
         private void OnDrawGizmos()

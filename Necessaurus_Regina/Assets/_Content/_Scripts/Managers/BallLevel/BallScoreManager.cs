@@ -1,3 +1,4 @@
+using BallGame.Player.Controller;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,8 +30,9 @@ namespace BallGame.Managers
             OnScoreChange = new UnityEvent<int, BallMove>();
         }
 
-        public void AddAction(BallActionType action)
+        public void AddAction(E_HitVersions hitVersion)
         {
+            BallActionType action = ConvertHitTypeToBallActionType(hitVersion);
             actionSequence.Add(action);
             
             if (actionSequence.Count > maxSequenceLength)
@@ -39,6 +41,17 @@ namespace BallGame.Managers
             }
 
             CheckSequenceForMove();
+        }
+        private BallActionType ConvertHitTypeToBallActionType(E_HitVersions hitType)
+        {
+            switch (hitType)
+            {
+                case E_HitVersions.left: return BallActionType.LeftFoot;
+                case E_HitVersions.right: return BallActionType.RightFoot;
+                case E_HitVersions.head: return BallActionType.Head;
+                case E_HitVersions.chest: return BallActionType.Chest;
+                default: return BallActionType.None;
+            }
         }
 
         private void CheckSequenceForMove()
