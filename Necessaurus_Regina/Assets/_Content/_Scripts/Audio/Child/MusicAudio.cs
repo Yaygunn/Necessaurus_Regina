@@ -41,17 +41,19 @@ namespace Audio.Music
 
         private void OnMenu()
         {
-            _com.SetParameter(ref _musicInstance, "Song" , 0);
             _com.PlayInstanceIfNotPlaying(ref _musicInstance, _data.Music);
+            _com.SetParameter(ref _musicInstance, "Song" , 0);
         }
 
         private void OnScrollerLevel()
         {
+            _com.PlayInstanceIfNotPlaying(ref _musicInstance, _data.Music);
             _com.SetParameter(ref _musicInstance, "Song", 1);
         }
 
         private void OnBallGameLevel()
         {
+            _com.PlayInstanceIfNotPlaying(ref _musicInstance, _data.Music);
             _com.SetParameter(ref _musicInstance, "Song", 2);
         }
 
