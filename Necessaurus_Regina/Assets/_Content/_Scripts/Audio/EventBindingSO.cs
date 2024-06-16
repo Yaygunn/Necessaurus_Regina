@@ -9,5 +9,9 @@ namespace Audio.Events
         [field:SerializeField] public EventReference Jump { get; private set; }
 
         [field:SerializeField] public EventReference BirdHit { get; private set; }
+
+        [field:SerializeField] public EventReference WallHit { get; private set; }
+
+        [field:SerializeField] public EventReference FloorHit { get; private set; }
     }
 }

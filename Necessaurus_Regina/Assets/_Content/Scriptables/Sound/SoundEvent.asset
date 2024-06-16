@@ -26,3 +26,17 @@ MonoBehaviour:
       Data3: -1077761405
       Data4: -44513256
     Path: event:/SFX/Footvolley/PigeonHit
+  <WallHit>k__BackingField:
+    Guid:
+      Data1: 2013039428
+      Data2: 1081191985
+      Data3: -4987497
+      Data4: -1681790524
+    Path: event:/SFX/Footvolley/BallFallsOnGround
+  <FloorHit>k__BackingField:
+    Guid:
+      Data1: 2013039428
+      Data2: 1081191985
+      Data3: -4987497
+      Data4: -1681790524
+    Path: event:/SFX/Footvolley/BallFallsOnGround

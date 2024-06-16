@@ -64,6 +64,7 @@ namespace BallGame
 
             if (other.CompareTag("Floor"))
             {
+                EventHub.BallFloorHit();
                 thrownBackIn = false;
                 consecutiveHits = 0;
                 EndGame();
@@ -74,6 +75,7 @@ namespace BallGame
             {
                 thrownBackIn = true;
                 consecutiveHits = 0;
+                EventHub.BallWallHit();
                 StartCoroutine(FreezeAndBounce());
                 return;
             }

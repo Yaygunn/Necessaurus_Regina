@@ -38,5 +38,11 @@ public static class EventHub
         Event_BallBirdHit?.Invoke();
     }
 
+    public static event Action Event_BallFloorHit;
+    public static void BallFloorHit()
+    {
+        Event_BallFloorHit?.Invoke();
+    }
+
     #endregion
 }

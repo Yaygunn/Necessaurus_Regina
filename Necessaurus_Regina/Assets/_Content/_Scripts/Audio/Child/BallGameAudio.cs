@@ -17,12 +17,15 @@ namespace Audio.BallGame
         public void Activate()
         {
             EventHub.Event_BallBirdHit += OnBirdHit;
-            Debug.Log("Activated");
+            EventHub.Event_BallWallHit += OnWallHit;
+            EventHub.Event_BallFloorHit += OnFloorHit;
         }
 
         public void DeActivate()
         {
             EventHub.Event_BallBirdHit -= OnBirdHit;
+            EventHub.Event_BallWallHit -= OnWallHit;
+            EventHub.Event_BallFloorHit -= OnFloorHit;
         }
 
 
@@ -34,7 +37,16 @@ namespace Audio.BallGame
         private void OnBirdHit()
         {
             _com.PlayOneShot(_data.BirdHit);
-            Debug.Log("BirdHit");
+        }
+
+        private void OnFloorHit()
+        {
+            _com.PlayOneShot(_data.FloorHit);
+        }
+
+        private void OnWallHit()
+        {
+            _com.PlayOneShot(_data.WallHit);
         }
     }
 }
