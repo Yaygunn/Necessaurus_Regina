@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Audio.FmodCommunication
 {
-    public class FmodCommunication
+    public class FModCommunication
     {
         public void PlayOneShot(EventReference eventReference)
         {

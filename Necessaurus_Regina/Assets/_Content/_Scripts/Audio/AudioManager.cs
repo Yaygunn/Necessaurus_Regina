@@ -1,5 +1,6 @@
 using Audio.Events;
 using Audio.FmodCommunication;
+using Audio.Scroller;
 using UnityEngine;
 
 namespace Manager.Audio
@@ -11,7 +12,7 @@ namespace Manager.Audio
 
         [SerializeField] private EventBindingSO _eventBindingSO;
 
-        private FmodCommunication _fmodCommunication;
+        private FModCommunication _fmodCommunication;
 
         private ScrollerAudio _scrollerAudio;
         private void Awake()
@@ -27,7 +28,7 @@ namespace Manager.Audio
 
         private void Initializeeee()
         {
-            _fmodCommunication = new FmodCommunication();
+            _fmodCommunication = new FModCommunication();
 
             _scrollerAudio = new ScrollerAudio(_fmodCommunication, _eventBindingSO);
 
