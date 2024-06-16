@@ -25,6 +25,7 @@ namespace BallGame.Components.Player.HitPoint.Collision
             ball.BounceBall(GetNewSpeed(ball));
             BallScoreManager.Instance.AddAction(_hitVersion);
             BallScoreManager.Instance.AddScore("Hit");
+            EventHub.BallHitPlayer(_hitVersion);
         }
 
         private Vector3 GetNewSpeed(Ball ball)

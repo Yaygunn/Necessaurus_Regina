@@ -1,5 +1,6 @@
 using Audio.Events;
 using Audio.FmodCommunication;
+using BallGame.Player.Controller;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace Audio.BallGame
             EventHub.Event_BallBirdHit += OnBirdHit;
             EventHub.Event_BallWallHit += OnWallHit;
             EventHub.Event_BallFloorHit += OnFloorHit;
+            EventHub.Event_BallHitPlayer += OnBallHitPlayer;
         }
 
         public void DeActivate()
@@ -26,6 +28,7 @@ namespace Audio.BallGame
             EventHub.Event_BallBirdHit -= OnBirdHit;
             EventHub.Event_BallWallHit -= OnWallHit;
             EventHub.Event_BallFloorHit -= OnFloorHit;
+            EventHub.Event_BallHitPlayer -= OnBallHitPlayer;
         }
 
 
@@ -47,6 +50,11 @@ namespace Audio.BallGame
         private void OnWallHit()
         {
             _com.PlayOneShot(_data.WallHit);
+        }
+
+        private void OnBallHitPlayer(E_HitVersions hitVersion)
+        {
+            _com.PlayOneShot(_data.BallKick);
         }
     }
 }

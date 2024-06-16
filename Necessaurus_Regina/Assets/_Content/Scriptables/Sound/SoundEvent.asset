@@ -40,3 +40,10 @@ MonoBehaviour:
       Data3: -4987497
       Data4: -1681790524
     Path: event:/SFX/Footvolley/BallFallsOnGround
+  <BallKick>k__BackingField:
+    Guid:
+      Data1: -26286018
+      Data2: 1125775892
+      Data3: 1822392511
+      Data4: 1183168854
+    Path: event:/SFX/Footvolley/BallKick

@@ -1,3 +1,4 @@
+using BallGame.Player.Controller;
 using System;
 using UnityEngine;
 
@@ -42,6 +43,12 @@ public static class EventHub
     public static void BallFloorHit()
     {
         Event_BallFloorHit?.Invoke();
+    }
+
+    public static event Action<E_HitVersions> Event_BallHitPlayer;
+    public static void BallHitPlayer(E_HitVersions hitVersion)
+    {
+        Event_BallHitPlayer?.Invoke(hitVersion);
     }
 
     #endregion

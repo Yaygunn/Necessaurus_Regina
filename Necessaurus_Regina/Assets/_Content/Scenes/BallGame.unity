@@ -1952,7 +1952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c4016e6035e3b4c94d6d4104b24434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitVersion: 0
+  _hitVersion: 2
   _bounceForce: 8
   _minAngle: -5
   _maxAngle: 5
@@ -2183,7 +2183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c4016e6035e3b4c94d6d4104b24434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitVersion: 0
+  _hitVersion: 3
   _bounceForce: 6
   _minAngle: -5
   _maxAngle: 5
@@ -2283,7 +2283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c4016e6035e3b4c94d6d4104b24434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitVersion: 0
+  _hitVersion: 1
   _bounceForce: 8
   _minAngle: -5
   _maxAngle: 5
