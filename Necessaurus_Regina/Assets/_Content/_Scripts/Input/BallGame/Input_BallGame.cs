@@ -53,16 +53,10 @@ namespace Input.BallGame
                 _playerController.OnRightFoot();
         }
         
-        public void OnJump(InputAction.CallbackContext context)
+        public void OnPrimaryAction(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
-                _playerController.OnJump();
-        }
-        
-        public void OnTurn(InputAction.CallbackContext context)
-        {
-            if (context.phase == InputActionPhase.Performed)
-                _playerController.OnTurn();
+                _playerController.OnPrimaryAction();
         }
     }
 
