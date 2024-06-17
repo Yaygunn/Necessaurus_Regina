@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6e33f020246674e92d9a702167b1b2, type: 3}
   m_Name: Yaygun
   m_EditorClassIdentifier: 
-  FullName: '?'
+  FullName: Yaygun
   Nickname: Yaygun
   Role: Lead Programmer
   CountryFlag: {fileID: 21300000, guid: 4012f56d6c966cb40bd2193f53c85968, type: 3}
