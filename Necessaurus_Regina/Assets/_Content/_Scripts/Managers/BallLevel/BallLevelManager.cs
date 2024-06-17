@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BallGame.UI;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,11 +11,17 @@ namespace BallGame.Managers
     {
         public static BallLevelManager Instance { get; private set; }
         public GameObject Player { get; private set; }
+
+        public bool GameHasStarted;
+        public bool GameHasEnded;
         
         [Header("Level Timer")]
         public float LevelTime = 90f;
         public UnityEvent OnLevelStart;
         public UnityEvent OnLevelEnd;
+
+        [Header("Ball")] public GameObject Ball;
+        public Transform BallSpawnPoint;
         
         private float timeRemaining;
 
@@ -33,13 +40,7 @@ namespace BallGame.Managers
 
         private void Start()
         {
-            // To be trigger with a button later
-            StartLevel();
-        }
-
-        private void Update()
-        {
-            UpdateLevelTimer();
+            Time.timeScale = 1;
         }
         
         private void InitalizeReferences()
@@ -52,37 +53,39 @@ namespace BallGame.Managers
             }
         }
 
-        private void StartLevel()
+        public void StartLevel()
         {
+            StartCoroutine(LevelStartCoroutine());
+        }
+
+        private IEnumerator LevelStartCoroutine()
+        {
+            GameHasStarted = true;
+            
             timeRemaining = LevelTime;
+            
+            yield return StartCoroutine(BallGameUI.Instance.CountdownCoroutine());
+            
+            BallGameUI.Instance.SetTimer(timeRemaining);
+            
+            // Invoke level start event (used for spawning ball + unlocking player movement)
+            SpawnBall();
             
             OnLevelStart?.Invoke();
         }
 
-        private void UpdateLevelTimer()
+        private void SpawnBall()
         {
-            if (timeRemaining > 0)
-            {
-                timeRemaining -= Time.deltaTime;
-                
-                if (timeRemaining <= 0)
-                {
-                    timeRemaining = 0;
-                    EndLevel();
-                }
-            }
+            Instantiate(Ball, BallSpawnPoint.position, Quaternion.identity);
         }
         
-        public float GetTimeRemaining()
+        public void EndLevel()
         {
-            return timeRemaining;
-        }
-        
-        private void EndLevel()
-        {
-            OnLevelEnd?.Invoke();
+            GameHasEnded = true;
             
-            Debug.Log("Level Ended!");
+            OnLevelEnd?.Invoke();
+
+            Time.timeScale = 0;
         }
     }   
 }

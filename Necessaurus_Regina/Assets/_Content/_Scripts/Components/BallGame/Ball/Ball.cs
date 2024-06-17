@@ -128,21 +128,8 @@ namespace BallGame
          */
         public void EndGame()
         {
-            // Probably send some event somewhere to finish the game?
-            Debug.Log("EndGame");
-
-            // For the time being, lets reset the position of the ball so we can continue testing
-            ResetBallPosition();
+            BallLevelManager.Instance.EndLevel();
         }
-
-        private void ResetBallPosition()
-        {
-            transform.position = new Vector3(0, 8.5f, 0);
-            rb.velocity = Vector2.zero;
-        }
-        
-        
-
 
         private void OnDrawGizmos()
         {

@@ -1,5 +1,6 @@
 using BallGame.Components.Player.HitPoint;
 using BallGame.Components.Player.Move;
+using BallGame.Managers;
 using UnityEngine;
 
 
@@ -25,6 +26,7 @@ namespace BallGame.Player.Controller
         [field:SerializeField] public BallHitPoint LeftLegHitPoint { get; private set; }
 
         private float _hitCoyoteTime { get; } = 0.1f;
+        
         void Start()
         {
             moveState = new MoveState(this);
@@ -36,7 +38,6 @@ namespace BallGame.Player.Controller
             CurrentState.Enter();
             
         }
-
         
         void Update()
         {
@@ -86,6 +87,11 @@ namespace BallGame.Player.Controller
         public void OnPrimaryAction()
         {
             CurrentState.OnPrimaryAction();
+            
+            if ( !BallLevelManager.Instance.GameHasStarted && !BallLevelManager.Instance.GameHasEnded)
+            {
+                BallLevelManager.Instance.StartLevel();
+            }
         }
 
         private void ReduceCoyoteTime()

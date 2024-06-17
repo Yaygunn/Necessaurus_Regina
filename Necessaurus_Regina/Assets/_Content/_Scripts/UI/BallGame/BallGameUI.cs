@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BallGame.Managers;
+using Manager.LevelChanger;
 using TMPro;
 using UnityEngine;
 
@@ -14,6 +15,26 @@ namespace BallGame.UI
         public TextMeshProUGUI MovePointsText;
         public TextMeshProUGUI TimerText;
         public TextMeshProUGUI ContestantNameText;
+        public TextMeshProUGUI StartLevelText;
+        public TextMeshProUGUI CountdownText;
+        
+        [Header("Game Over Panel")]
+        public GameObject GameOverPanel;
+        public TextMeshProUGUI GaveOverScore;
+        
+        public static BallGameUI Instance { get; private set; }
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
         
         private void OnDisable()
         {
@@ -21,26 +42,41 @@ namespace BallGame.UI
             {
                 BallScoreManager.Instance.OnScoreChange.RemoveListener(UpdateScoreText);
             }
+            
+            if (BallLevelManager.Instance != null)
+            {
+                BallLevelManager.Instance.OnLevelEnd.RemoveListener(ShowGameOverPanel);
+            }
+        }
+
+        public void ShowGameOverPanel()
+        {
+            GaveOverScore.text = BallScoreManager.Instance.GetScore().ToString();
+            GameOverPanel.SetActive(true);
+        }
+
+        public void HideGameOverPanel()
+        {
+            GameOverPanel.SetActive(false);
         }
 
         private void Start()
         {
+            HideGameOverPanel();
+            UpdateScoreText(BallScoreManager.Instance.GetScore());
+            UpdateMove("", "");
+            UpdateContestantName("Practice");
+            
+            
+            if (BallLevelManager.Instance != null)
+            {
+                BallLevelManager.Instance.OnLevelEnd.AddListener(ShowGameOverPanel);
+            }
+            
             if (BallScoreManager.Instance != null)
             {
                 BallScoreManager.Instance.OnScoreChange.AddListener(UpdateScoreText);
             }
-            
-            UpdateScoreText(BallScoreManager.Instance.GetScore());
-            UpdateMove("", "");
-            UpdateContestantName("Practice");
-            UpdateTimer(90);
-        }
-
-        private void Update()
-        {
-            // I'm not sure if this is the best, maybe we should run this as an event
-            // and listen to every time the time updates?
-            UpdateTimer(BallLevelManager.Instance.GetTimeRemaining());
         }
 
         private void UpdateScoreText(int score, BallMove move = null)
@@ -77,16 +113,40 @@ namespace BallGame.UI
             ContestantNameText.text = name;
         }
         
-        private void UpdateTimer(float time)
+        public void SetTimer(float time)
         {
-            time += 1; // Compensate for delay
-            
-            int minutes = Mathf.FloorToInt(time / 60);
-            int seconds = Mathf.FloorToInt(time % 60);
-            
-            string timeFormatted = string.Format("{0:00}:{1:00}", minutes, seconds);
-            
-            TimerText.text = timeFormatted.ToString();
+            StartCoroutine(TimerCoroutine(time));
+        }
+
+        private IEnumerator TimerCoroutine(float time)
+        {
+            while (time > 0)
+            {
+                time -= Time.deltaTime;
+                TimerText.text = $"Time: {Mathf.FloorToInt(time / 60):00}:{Mathf.FloorToInt(time % 60):00}";
+                yield return null;
+            }
+
+            BallLevelManager.Instance.EndLevel();
+        }
+        
+        public IEnumerator CountdownCoroutine()
+        {
+            StartLevelText.gameObject.SetActive(false);
+            CountdownText.gameObject.SetActive(true);
+
+            for (int i = 3; i > 0; i--)
+            {
+                CountdownText.text = i.ToString();
+                yield return new WaitForSeconds(1f);
+            }
+
+            CountdownText.gameObject.SetActive(false);
+        }
+
+        public void RestartLevel()
+        {
+            LevelChanger.Instance.OpenBallGame();
         }
     }   
 }

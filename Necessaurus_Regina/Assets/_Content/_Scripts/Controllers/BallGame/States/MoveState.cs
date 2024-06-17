@@ -19,6 +19,15 @@ namespace BallGame.Player.Controller
                 _player.ChangeState(_player.hitBallState);
             }
         }
+
+        public override void OnPrimaryAction()
+        {
+            base.OnPrimaryAction();
+            
+            // Rotate the player 360deg over X time and lock movement
+        }
+        
+            
         public override void Exit() 
         { 
             base.Exit();
