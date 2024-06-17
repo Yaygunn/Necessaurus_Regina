@@ -22,6 +22,13 @@ namespace SideScroller.Components.Jump
         [Header("Descent")]
         [SerializeField] private float _accelerationDescent;
         [SerializeField] private float _DescentMinSpeed;
+
+        private float _startY;
+
+        private void Start()
+        {
+            _startY = transform.position.y;
+        }
         public void StartJump(Action jumpEnd)
         {
             _jumpEnd = jumpEnd;
@@ -79,8 +86,11 @@ namespace SideScroller.Components.Jump
         private void DescentTick()
         {
             JumpMovement(_accelerationDescent);
-            if(IsGrounded())
+            if (IsOnGround())
+            {
+                SetPositionToGround();
                 JumpEnd();
+            }
             if(_speedCurrent < _DescentMinSpeed)
                 _speedCurrent = _DescentMinSpeed;
         }
@@ -96,6 +106,18 @@ namespace SideScroller.Components.Jump
             if(Physics2D.Raycast(_groundCheckPosition.position, Vector2.down, _groundCheckRayLength, _groundLayers))
                 return true;
             return false;
+        }
+
+        private bool IsOnGround()
+        {
+            return transform.position.y <= _startY;
+        }
+
+        private void SetPositionToGround()
+        {
+            Vector3 pos = transform.position;
+            pos.y = _startY;
+            transform.position = pos;
         }
     }
 }
