@@ -205,16 +205,7 @@ public partial class @Keys: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""4d72aca4-ce12-448a-872d-f903b7d6a9c4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Turn"",
+                    ""name"": ""PrimaryAction"",
                     ""type"": ""Button"",
                     ""id"": ""491be190-ae4a-4dd8-b46c-ed30a2b0dc77"",
                     ""expectedControlType"": ""Button"",
@@ -303,23 +294,12 @@ public partial class @Keys: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3fce79a0-dfcb-4f00-a783-5e2ffd39f623"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""76ea294d-023a-4519-a26e-aa5abb940532"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Turn"",
+                    ""action"": ""PrimaryAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -341,8 +321,7 @@ public partial class @Keys: IInputActionCollection2, IDisposable
         m_BallGame_LeftFoot = m_BallGame.FindAction("LeftFoot", throwIfNotFound: true);
         m_BallGame_RightFoot = m_BallGame.FindAction("RightFoot", throwIfNotFound: true);
         m_BallGame_ChestHit = m_BallGame.FindAction("ChestHit", throwIfNotFound: true);
-        m_BallGame_Jump = m_BallGame.FindAction("Jump", throwIfNotFound: true);
-        m_BallGame_Turn = m_BallGame.FindAction("Turn", throwIfNotFound: true);
+        m_BallGame_PrimaryAction = m_BallGame.FindAction("PrimaryAction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -479,8 +458,7 @@ public partial class @Keys: IInputActionCollection2, IDisposable
     private readonly InputAction m_BallGame_LeftFoot;
     private readonly InputAction m_BallGame_RightFoot;
     private readonly InputAction m_BallGame_ChestHit;
-    private readonly InputAction m_BallGame_Jump;
-    private readonly InputAction m_BallGame_Turn;
+    private readonly InputAction m_BallGame_PrimaryAction;
     public struct BallGameActions
     {
         private @Keys m_Wrapper;
@@ -490,8 +468,7 @@ public partial class @Keys: IInputActionCollection2, IDisposable
         public InputAction @LeftFoot => m_Wrapper.m_BallGame_LeftFoot;
         public InputAction @RightFoot => m_Wrapper.m_BallGame_RightFoot;
         public InputAction @ChestHit => m_Wrapper.m_BallGame_ChestHit;
-        public InputAction @Jump => m_Wrapper.m_BallGame_Jump;
-        public InputAction @Turn => m_Wrapper.m_BallGame_Turn;
+        public InputAction @PrimaryAction => m_Wrapper.m_BallGame_PrimaryAction;
         public InputActionMap Get() { return m_Wrapper.m_BallGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -516,12 +493,9 @@ public partial class @Keys: IInputActionCollection2, IDisposable
             @ChestHit.started += instance.OnChestHit;
             @ChestHit.performed += instance.OnChestHit;
             @ChestHit.canceled += instance.OnChestHit;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
-            @Turn.started += instance.OnTurn;
-            @Turn.performed += instance.OnTurn;
-            @Turn.canceled += instance.OnTurn;
+            @PrimaryAction.started += instance.OnPrimaryAction;
+            @PrimaryAction.performed += instance.OnPrimaryAction;
+            @PrimaryAction.canceled += instance.OnPrimaryAction;
         }
 
         private void UnregisterCallbacks(IBallGameActions instance)
@@ -541,12 +515,9 @@ public partial class @Keys: IInputActionCollection2, IDisposable
             @ChestHit.started -= instance.OnChestHit;
             @ChestHit.performed -= instance.OnChestHit;
             @ChestHit.canceled -= instance.OnChestHit;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
-            @Turn.started -= instance.OnTurn;
-            @Turn.performed -= instance.OnTurn;
-            @Turn.canceled -= instance.OnTurn;
+            @PrimaryAction.started -= instance.OnPrimaryAction;
+            @PrimaryAction.performed -= instance.OnPrimaryAction;
+            @PrimaryAction.canceled -= instance.OnPrimaryAction;
         }
 
         public void RemoveCallbacks(IBallGameActions instance)
@@ -578,7 +549,6 @@ public partial class @Keys: IInputActionCollection2, IDisposable
         void OnLeftFoot(InputAction.CallbackContext context);
         void OnRightFoot(InputAction.CallbackContext context);
         void OnChestHit(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnTurn(InputAction.CallbackContext context);
+        void OnPrimaryAction(InputAction.CallbackContext context);
     }
 }

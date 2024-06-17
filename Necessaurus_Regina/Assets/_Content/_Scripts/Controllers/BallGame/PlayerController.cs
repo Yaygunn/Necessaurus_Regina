@@ -83,14 +83,9 @@ namespace BallGame.Player.Controller
             HitTime = _hitCoyoteTime;
         }
         
-        public void OnJump()
+        public void OnPrimaryAction()
         {
-            CurrentState.OnJump();
-        }
-        
-        public void OnTurn()
-        {
-            CurrentState.OnTurn();
+            CurrentState.OnPrimaryAction();
         }
 
         private void ReduceCoyoteTime()
