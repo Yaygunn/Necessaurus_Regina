@@ -23,6 +23,10 @@ namespace Manager.ScrollSpeedManager
         [SerializeField] private float _crouchSpeedLost;
         [SerializeField] private float _crouchAcceleration;
 
+        [Header("Damage")]
+        [SerializeField] private float _damageSpeedLost;
+        [SerializeField] private float _damageAcceleration;
+
         private float _accelerationConstant;
 
         private E_Step LegState;
@@ -55,7 +59,6 @@ namespace Manager.ScrollSpeedManager
             }
             else
             {
-                print("Right");
                 OnPlayerStep();
             }
             LegState = E_Step.right;
@@ -68,7 +71,6 @@ namespace Manager.ScrollSpeedManager
             }
             else
             {
-                print("left");
                 OnPlayerStep();
                 LegState = E_Step.left;
             }
@@ -89,6 +91,12 @@ namespace Manager.ScrollSpeedManager
         {
             _accelerationConstant = _runAccelerationConstant;
             LegState = E_Step.none;
+        }
+
+        public void DamageMod()
+        {
+            _currentSpeed = math.max(0, _currentSpeed - _damageSpeedLost);
+            _accelerationConstant = _damageAcceleration;
         }
     }
 }

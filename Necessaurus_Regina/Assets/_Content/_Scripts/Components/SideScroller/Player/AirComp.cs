@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace SideScroller.Components.Jump
@@ -22,6 +24,9 @@ namespace SideScroller.Components.Jump
         [Header("Descent")]
         [SerializeField] private float _accelerationDescent;
         [SerializeField] private float _DescentMinSpeed;
+        [Header("Fall")]
+        [SerializeField] private float _accelerationFall;
+        [SerializeField] private float _FallMaxSpeed;
 
         private float _startY;
 
@@ -118,6 +123,27 @@ namespace SideScroller.Components.Jump
             Vector3 pos = transform.position;
             pos.y = _startY;
             transform.position = pos;
+        }
+
+        public void OnDamage()
+        {
+            StartCoroutine(DamageFall());
+        }
+
+        private IEnumerator DamageFall()
+        {
+            _speedCurrent = math.min(_speedCurrent, _FallMaxSpeed);
+            while(!IsOnGround())
+            {
+                FallMovement();
+                yield return null;
+            }
+            SetPositionToGround() ;
+        }
+
+        private void FallMovement()
+        {
+            JumpMovement(_accelerationFall);
         }
     }
 }

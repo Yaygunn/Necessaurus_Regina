@@ -14,6 +14,7 @@ namespace SideScroller.Player.Controller
         public IdleState idleState {  get; private set; }
         public AirState airState { get; private set; }
         public CrouchState crouchState { get; private set; }
+        public DamageState damageState { get; private set; }
         #endregion
 
         #region Components
@@ -33,6 +34,7 @@ namespace SideScroller.Player.Controller
             idleState = new IdleState(this);
             airState = new AirState(this);
             crouchState = new CrouchState(this);
+            damageState = new DamageState(this);
 
             airComp = GetComponent<AirComp>();
             crouchComp = GetComponent<CrouchComp>();

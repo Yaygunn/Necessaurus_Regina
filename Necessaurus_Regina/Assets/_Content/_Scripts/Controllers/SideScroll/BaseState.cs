@@ -15,5 +15,6 @@ namespace SideScroller.Player.Controller
         public virtual void OnCrouch() { }
         public virtual void OnEndCrouch() { }
         public virtual void Exit() { }
+        public virtual void OnDamage() { }
     }
 }

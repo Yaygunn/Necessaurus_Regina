@@ -32,6 +32,12 @@ namespace SideScroller.Player.Controller
         {
             base.Exit(); 
         }
+        public override void OnDamage()
+        {
+            base.OnDamage();
+            _player.airComp.OnDamage();
+            _player.ChangeState(_player.damageState);
+        }
 
         private void Landed()
         {

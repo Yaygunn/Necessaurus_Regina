@@ -45,6 +45,12 @@ namespace SideScroller.Player.Controller
 
             _player.shapeChanger.EmptyLeg();
         }
+
+        public override void OnDamage()
+        {
+            base.OnDamage();
+            _player.ChangeState(_player.damageState);
+        }
         public void RightStep()
         {
             _player.scrollSpeedManager.RightStep();

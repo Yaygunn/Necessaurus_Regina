@@ -42,5 +42,10 @@ namespace SideScroller.Player.Controller
         {
             _player.ChangeState(_player.idleState);
         }
+        public override void OnDamage()
+        {
+            base.OnDamage();
+            _player.ChangeState(_player.damageState);
+        }
     }
 }

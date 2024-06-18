@@ -37,5 +37,6 @@ namespace SideScroller.Components.Crouch
             _endAction();
         }
 
+
     }
 }
