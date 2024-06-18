@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Bird
   - Ball
+  - Obstacle
   layers:
   - Default
   - TransparentFX
