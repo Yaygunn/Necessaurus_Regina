@@ -95,9 +95,8 @@ namespace BallGame.Player.Controller
             if ( !BallLevelManager.Instance.GameHasStarted && !BallLevelManager.Instance.GameHasEnded)
             {
                 BallLevelManager.Instance.StartLevel();
-            }
-            
-            if (BallLevelManager.Instance.GameHasStarted && !BallLevelManager.Instance.GameHasEnded)
+            } 
+            else if (BallLevelManager.Instance.GameHasStarted && !BallLevelManager.Instance.GameHasEnded)
             {
                 if (CurrentState == moveState)
                 {
