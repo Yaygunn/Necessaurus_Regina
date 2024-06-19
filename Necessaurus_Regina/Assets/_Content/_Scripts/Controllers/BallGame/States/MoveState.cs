@@ -8,9 +8,9 @@ namespace BallGame.Player.Controller
         { 
             base.Enter();
         }
-        public override void Tick()
+        public override void Tick(float dt)
         { 
-            base.Tick();
+            base.Tick(dt);
 
             _player.MoveComp.GetMoveInput(_player.MoveInput);
             if (_player.HitTime > 0)
@@ -31,6 +31,8 @@ namespace BallGame.Player.Controller
         public override void Exit() 
         { 
             base.Exit();
+            
+            _player.MoveComp.GetMoveInput(0);
         }
     }
 }

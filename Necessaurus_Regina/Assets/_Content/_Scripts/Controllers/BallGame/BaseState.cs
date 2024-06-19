@@ -10,7 +10,7 @@ namespace BallGame.Player.Controller
         }
 
         public virtual void Enter() { }
-        public virtual void Tick() { }
+        public virtual void Tick(float dt) { }
         public virtual void OnPrimaryAction() { }
         public virtual void Exit() { }
     }

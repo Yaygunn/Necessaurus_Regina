@@ -29,9 +29,9 @@ namespace BallGame.Player.Controller
             
              _player.ResetCoyoteTime();
         }
-        public override void Tick()
+        public override void Tick(float dt)
         {
-            base.Tick();
+            base.Tick(dt);
         }
         public override void Exit()
         {
