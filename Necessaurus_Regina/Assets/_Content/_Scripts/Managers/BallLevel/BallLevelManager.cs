@@ -24,6 +24,7 @@ namespace BallGame.Managers
         public Transform BallSpawnPoint;
         
         private float timeRemaining;
+        private GameObject ball;
 
         private void Awake()
         {
@@ -76,7 +77,13 @@ namespace BallGame.Managers
 
         private void SpawnBall()
         {
-            Instantiate(Ball, BallSpawnPoint.position, Quaternion.identity);
+            ball = Instantiate(Ball, BallSpawnPoint.position, Quaternion.identity);
+        }
+
+        public void ResetBall()
+        {
+            Destroy(ball);
+            SpawnBall();
         }
         
         public void EndLevel()
