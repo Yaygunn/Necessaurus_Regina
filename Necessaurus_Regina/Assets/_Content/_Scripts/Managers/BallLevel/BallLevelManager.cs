@@ -62,15 +62,13 @@ namespace BallGame.Managers
         private IEnumerator LevelStartCoroutine()
         {
             GameHasStarted = true;
-            
             timeRemaining = LevelTime;
+            
+            SpawnBall();
             
             yield return StartCoroutine(BallGameUI.Instance.CountdownCoroutine());
             
             BallGameUI.Instance.SetTimer(timeRemaining);
-            
-            // Invoke level start event (used for spawning ball + unlocking player movement)
-            SpawnBall();
             
             OnLevelStart?.Invoke();
         }
@@ -82,8 +80,8 @@ namespace BallGame.Managers
 
         public void ResetBall()
         {
-            Destroy(ball);
-            SpawnBall();
+            ball.transform.position = new Vector3(Player.transform.position.x, BallSpawnPoint.position.y);
+            ball.GetComponent<Ball>().ResetBall();
         }
         
         public void EndLevel()

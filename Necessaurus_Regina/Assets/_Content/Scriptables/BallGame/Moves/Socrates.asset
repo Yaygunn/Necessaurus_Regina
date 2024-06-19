@@ -16,4 +16,4 @@ MonoBehaviour:
   MovePoints: 500
   MoveDescription: 'Full turn between two hits '
   ShowNameOnScore: 1
-  ActionSequence: 050000000600000005000000
+  ActionSequence: 020000000600000005000000

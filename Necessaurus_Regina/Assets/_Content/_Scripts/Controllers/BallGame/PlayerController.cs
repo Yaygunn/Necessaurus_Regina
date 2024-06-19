@@ -27,8 +27,8 @@ namespace BallGame.Player.Controller
         [field:SerializeField] public BallHitPoint LeftLegHitPoint { get; private set; }
         
 
-        private float _hitCoyoteTime { get; } = 0.1f;
-        private float _turnTimer { get; } = 2f;
+        [SerializeField] private float _hitCoyoteTime { get; } = 0.1f;
+        [SerializeField] private float _turnTimer { get; } = 1f;
         
         void Start()
         {
@@ -99,9 +99,9 @@ namespace BallGame.Player.Controller
             
             if (BallLevelManager.Instance.GameHasStarted && !BallLevelManager.Instance.GameHasEnded)
             {
-                // Can only trigger in the move state
                 if (CurrentState == moveState)
                 {
+                    BallScoreManager.Instance.AddAction(E_HitVersions.turn);
                     ChangeState(turnState);
                 }
             }

@@ -50,6 +50,7 @@ namespace BallGame.Managers
                 case E_HitVersions.right: return BallActionType.RightFoot;
                 case E_HitVersions.head: return BallActionType.Head;
                 case E_HitVersions.chest: return BallActionType.Chest;
+                case E_HitVersions.turn: return BallActionType.Turn;
                 default: return BallActionType.None;
             }
         }
@@ -69,7 +70,6 @@ namespace BallGame.Managers
                     break;
                 }
             }
-
         }
 
         private bool DoesSequenceMatch(List<BallActionType> sequence)
@@ -118,6 +118,11 @@ namespace BallGame.Managers
         public int GetScore()
         {
             return score;
+        }
+
+        public void ClearActions()
+        {
+            actionSequence.Clear();
         }
     }   
 }

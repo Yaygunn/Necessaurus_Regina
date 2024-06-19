@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BallGame.Player.Controller
 {
-    public enum E_HitVersions { head, left, right, chest }
+    public enum E_HitVersions { head, left, right, chest, turn }
     public class HitBallState : BaseState
     {
         public HitBallState(PlayerController player) : base(player) { }

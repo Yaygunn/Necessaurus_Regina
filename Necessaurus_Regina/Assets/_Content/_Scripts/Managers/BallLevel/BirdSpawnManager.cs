@@ -12,6 +12,8 @@ namespace BallGame.Managers
         
         [Header("Spawn Settings")]
         public float SpawnInterval = 20f;
+
+        public float SpawnAfter = 10f;
         public int MaxSpawns = 3;
         [Tooltip("Will stop spawning birds once any bird is hit")]
         public bool StopSpawnOnKill = true;
@@ -23,7 +25,6 @@ namespace BallGame.Managers
 
         private void Start()
         {
-            // Hook into BallLevelManager's OnLevelStart event
             BallLevelManager.Instance.OnLevelStart.AddListener(StartSpawning);
             BallLevelManager.Instance.OnLevelEnd.AddListener(StopSpawning);
         }
@@ -41,6 +42,8 @@ namespace BallGame.Managers
 
         private IEnumerator SpawnBirds()
         {
+            yield return new WaitForSeconds(SpawnAfter);
+            
             while (currentSpawnCount < MaxSpawns && !stopSpawning)
             {
                 SpawnBird();

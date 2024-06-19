@@ -23,8 +23,6 @@ namespace BallGame.Player.Controller
         public override void OnPrimaryAction()
         {
             base.OnPrimaryAction();
-            
-            // Rotate the player 360deg over X time and lock movement
         }
         
             

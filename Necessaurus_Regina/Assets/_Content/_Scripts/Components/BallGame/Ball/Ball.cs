@@ -33,7 +33,13 @@ namespace BallGame
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            SetBallGravityScale(0);
+            
+            BallLevelManager.Instance.OnLevelStart.AddListener(DropBall);
+        }
 
+        private void DropBall()
+        {
             SetBallGravityScale(BallGravityScale);
         }
 
@@ -83,6 +89,7 @@ namespace BallGame
                 EventHub.BallFloorHit();
                 thrownBackIn = false;
                 consecutiveHits = 0;
+                BallScoreManager.Instance.ClearActions();
                 currentAttempts++;
                 
                 if (currentAttempts >= Attempts)
@@ -165,6 +172,19 @@ namespace BallGame
 
             Gizmos.DrawLine(transform.position, transform.position + minDirection);
             Gizmos.DrawLine(transform.position, transform.position + maxDirection);
+        }
+
+        public void ResetBall()
+        {
+            rb.velocity = Vector2.zero;
+            SetBallGravityScale(0);
+            StartCoroutine(DelayedDrop());
+        }
+
+        private IEnumerator DelayedDrop()
+        {
+            yield return new WaitForSeconds(1f);
+            DropBall();
         }
     }
 }
