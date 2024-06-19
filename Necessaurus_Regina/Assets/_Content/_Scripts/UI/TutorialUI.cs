@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using BallGame.UI;
@@ -16,10 +17,24 @@ public class TutorialUI : MonoBehaviour
     
     private void Start()
     {
-        BallGameUI.Instance.OnCountdownStart.AddListener(ShowTutorial);
-        BallGameUI.Instance.OnCountdownEnd.AddListener(HideTutorial);
+        // Add event listeners for Ball Game
+        if (BallGameUI.Instance != null)
+        {
+            BallGameUI.Instance.OnCountdownStart.AddListener(ShowTutorial);
+            BallGameUI.Instance.OnCountdownEnd.AddListener(HideTutorial);
+        }
     }
-    
+
+    private void OnDisable()
+    {
+        // Remove event listeners for Ball Game
+        if (BallGameUI.Instance != null)
+        {
+            BallGameUI.Instance.OnCountdownStart.RemoveListener(ShowTutorial);
+            BallGameUI.Instance.OnCountdownEnd.RemoveListener(HideTutorial);
+        }
+    }
+
     public void ShowTutorial()
     {
         gameObject.SetActive(true);
