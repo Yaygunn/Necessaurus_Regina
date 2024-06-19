@@ -6,8 +6,5 @@ public enum BallActionType
     Head,
     Chest,
     AnyHit,
-    TurnOnce,
-    TurnTwice,
-    TurnThrice,
-    Jump
+    Turn
 }

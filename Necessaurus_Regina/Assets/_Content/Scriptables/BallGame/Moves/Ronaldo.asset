@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f33519c8c4e1e434cbf905b602c6bdf8, type: 3}
-  m_Name: Five in a row
+  m_Name: Ronaldo
   m_EditorClassIdentifier: 
-  MoveName: Five in a row
-  MovePoints: 750
-  MoveDescription: five shots in succession
-  ShowNameOnScore: 0
-  ActionSequence: 00000000
+  MoveName: Ronaldo
+  MovePoints: 1500
+  MoveDescription: 'head + turn 360 + chest '
+  ShowNameOnScore: 1
+  ActionSequence: 030000000600000004000000

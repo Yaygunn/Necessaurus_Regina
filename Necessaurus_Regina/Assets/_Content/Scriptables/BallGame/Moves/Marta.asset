@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f33519c8c4e1e434cbf905b602c6bdf8, type: 3}
-  m_Name: Head Beanger
+  m_Name: Marta
   m_EditorClassIdentifier: 
-  MoveName: Head Beanger
-  MovePoints: 1500
-  MoveDescription: rear header + front header
+  MoveName: Marta
+  MovePoints: 5000
+  MoveDescription: 'left foot + head + right foot + chest + left foot + turn 360 '
   ShowNameOnScore: 1
-  ActionSequence: 06000000030000000600000003000000
+  ActionSequence: 010000000300000002000000040000000100000006000000

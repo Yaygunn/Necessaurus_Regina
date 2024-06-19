@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f33519c8c4e1e434cbf905b602c6bdf8, type: 3}
-  m_Name: Axle Foley
+  m_Name: Socrates
   m_EditorClassIdentifier: 
-  MoveName: Axle Foley
-  MovePoints: 750
-  MoveDescription: one and a half turns betweeen two shots
+  MoveName: "S\xF3crates"
+  MovePoints: 500
+  MoveDescription: 'Full turn between two hits '
   ShowNameOnScore: 1
-  ActionSequence: 050000000800000005000000
+  ActionSequence: 050000000600000005000000

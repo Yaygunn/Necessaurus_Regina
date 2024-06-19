@@ -6,8 +6,13 @@ namespace BallGame.Components.Player.Move
 {
     public class Move : MonoBehaviour
     {
+        [Header("Movement")]
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _acceleration;
+        
+        [Header("Boundries")]
+        [SerializeField] private float leftBoundary = -10f;
+        [SerializeField] private float rightBoundary = 10f;
 
         private Rigidbody2D rb;
 
@@ -24,6 +29,8 @@ namespace BallGame.Components.Player.Move
             SpeedChange();
 
             rb.velocity = new Vector3(_speed, 0, 0);
+
+            ClampPosition();
         }
         
         public void GetMoveInput(float input)
@@ -41,6 +48,13 @@ namespace BallGame.Components.Player.Move
             {
                 _speed = Mathf.Max(_speed - _acceleration * Time.deltaTime, _targetSpeed);
             }
+        }
+        
+        private void ClampPosition()
+        {
+            Vector3 clampedPosition = transform.position;
+            clampedPosition.x = Mathf.Clamp(clampedPosition.x, leftBoundary, rightBoundary);
+            transform.position = clampedPosition;
         }
     }
 }

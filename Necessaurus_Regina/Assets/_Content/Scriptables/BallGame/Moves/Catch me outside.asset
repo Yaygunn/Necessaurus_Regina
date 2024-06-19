@@ -15,5 +15,5 @@ MonoBehaviour:
   MoveName: Catch me outside
   MovePoints: 1500
   MoveDescription: Catching the ball when it is thrown-in from outside
-  ShowNameOnScore: 1
+  ShowNameOnScore: 0
   ActionSequence: 00000000

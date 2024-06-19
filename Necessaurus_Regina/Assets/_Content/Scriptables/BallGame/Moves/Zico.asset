@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f33519c8c4e1e434cbf905b602c6bdf8, type: 3}
-  m_Name: Horseshoe
+  m_Name: Zico
   m_EditorClassIdentifier: 
-  MoveName: Horseshoe
-  MovePoints: 500
-  MoveDescription: left heel shot + right heel shot
+  MoveName: Zico
+  MovePoints: 1500
+  MoveDescription: 'left foot + turn 360 + right foot '
   ShowNameOnScore: 1
-  ActionSequence: 0100000002000000
+  ActionSequence: 010000000600000002000000

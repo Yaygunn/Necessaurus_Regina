@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f33519c8c4e1e434cbf905b602c6bdf8, type: 3}
-  m_Name: Full Axle
+  m_Name: Pele
   m_EditorClassIdentifier: 
-  MoveName: Full Axle
-  MovePoints: 500
-  MoveDescription: full turn between two shots
+  MoveName: Pele
+  MovePoints: 1500
+  MoveDescription: 'right foot + chest + head + left foot '
   ShowNameOnScore: 1
-  ActionSequence: 050000000700000005000000
+  ActionSequence: 02000000040000000300000001000000
