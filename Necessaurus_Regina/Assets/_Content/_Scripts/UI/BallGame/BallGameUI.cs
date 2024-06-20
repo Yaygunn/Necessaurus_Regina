@@ -4,6 +4,7 @@ using BallGame.Managers;
 using Manager.LevelChanger;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace BallGame.UI
 {
@@ -21,6 +22,9 @@ namespace BallGame.UI
         [Header("Game Over Panel")]
         public GameObject GameOverPanel;
         public TextMeshProUGUI GaveOverScore;
+
+        public UnityEvent OnCountdownStart;
+        public UnityEvent OnCountdownEnd;
         
         public static BallGameUI Instance { get; private set; }
 
@@ -132,6 +136,8 @@ namespace BallGame.UI
         
         public IEnumerator CountdownCoroutine()
         {
+            OnCountdownStart?.Invoke();
+            
             StartLevelText.gameObject.SetActive(false);
             CountdownText.gameObject.SetActive(true);
 
@@ -142,6 +148,8 @@ namespace BallGame.UI
             }
 
             CountdownText.gameObject.SetActive(false);
+            
+            OnCountdownEnd?.Invoke();
         }
 
         public void RestartLevel()

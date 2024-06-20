@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BallGame.Player.Controller
 {
-    public enum E_HitVersions { head, left, right, chest }
+    public enum E_HitVersions { head, left, right, chest, turn }
     public class HitBallState : BaseState
     {
         public HitBallState(PlayerController player) : base(player) { }
@@ -29,9 +29,9 @@ namespace BallGame.Player.Controller
             
              _player.ResetCoyoteTime();
         }
-        public override void Tick()
+        public override void Tick(float dt)
         {
-            base.Tick();
+            base.Tick(dt);
         }
         public override void Exit()
         {

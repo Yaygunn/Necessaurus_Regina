@@ -10,6 +10,7 @@ namespace BallGame.Player.Controller
     {
         public BaseState CurrentState { get; private set; }
         public MoveState moveState { get; private set; }
+        public TurnState turnState { get; private set; }
         public HitBallState hitBallState { get; private set; }
 
         public Move MoveComp { get; private set; }
@@ -24,13 +25,16 @@ namespace BallGame.Player.Controller
         [field:SerializeField] public BallHitPoint ChestHitPoint { get; private set; }
         [field:SerializeField] public BallHitPoint RightLegHitPoint { get; private set; }
         [field:SerializeField] public BallHitPoint LeftLegHitPoint { get; private set; }
+        
 
-        private float _hitCoyoteTime { get; } = 0.1f;
+        [SerializeField] private float _hitCoyoteTime { get; } = 0.1f;
+        [SerializeField] private float _turnTimer { get; } = 1f;
         
         void Start()
         {
             moveState = new MoveState(this);
             hitBallState = new HitBallState(this);
+            turnState = new TurnState(this, _turnTimer);
 
             MoveComp = GetComponent<Move>();
 
@@ -41,7 +45,7 @@ namespace BallGame.Player.Controller
         
         void Update()
         {
-            CurrentState.Tick();
+            CurrentState.Tick(Time.deltaTime);
             ReduceCoyoteTime();
         }
 
@@ -91,6 +95,14 @@ namespace BallGame.Player.Controller
             if ( !BallLevelManager.Instance.GameHasStarted && !BallLevelManager.Instance.GameHasEnded)
             {
                 BallLevelManager.Instance.StartLevel();
+            } 
+            else if (BallLevelManager.Instance.GameHasStarted && !BallLevelManager.Instance.GameHasEnded)
+            {
+                if (CurrentState == moveState)
+                {
+                    BallScoreManager.Instance.AddAction(E_HitVersions.turn);
+                    ChangeState(turnState);
+                }
             }
         }
 

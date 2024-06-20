@@ -31,12 +31,11 @@ namespace BallGame
             birdRb.gravityScale = 1;
 
             EventHub.BallBirdHit();
-            BallScoreManager.Instance.AddScore("Fowl");
+            BallScoreManager.Instance.AddScore("Farofa");
         }
         
         private void OnBecameInvisible()
         {
-            Debug.Log("Bird is out of view");
             Destroy(gameObject);
         }
 

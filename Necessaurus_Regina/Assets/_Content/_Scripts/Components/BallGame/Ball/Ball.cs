@@ -19,6 +19,10 @@ namespace BallGame
         
         public float BallGravityScale = 0.8f;
         public float WallBounceUpwardForce = 0.8f;
+        
+        [Header("Ball Attempts")]
+        public int Attempts = 3;
+        private int currentAttempts = 0;
 
         public Rigidbody2D rb {  get; private set; }
         private Vector3 playerPositionAtBounce;
@@ -29,7 +33,13 @@ namespace BallGame
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            SetBallGravityScale(0);
+            
+            BallLevelManager.Instance.OnLevelStart.AddListener(DropBall);
+        }
 
+        private void DropBall()
+        {
             SetBallGravityScale(BallGravityScale);
         }
 
@@ -54,9 +64,21 @@ namespace BallGame
                     thrownBackIn = false;
                 }
                 
+                // This means you can stack points for hitting the ball multiple times
+                // Not sure if this is best or if we need to only trigger Tri when the ball fails on 4th hit
+                if (consecutiveHits == 3)
+                {
+                    BallScoreManager.Instance.AddScore("Tri");
+                }
+                
+                if (consecutiveHits == 4)
+                {
+                    BallScoreManager.Instance.AddScore("Tetra");
+                }
+                
                 if (consecutiveHits == 5)
                 {
-                    BallScoreManager.Instance.AddScore("Five in a row");
+                    BallScoreManager.Instance.AddScore("Penta");
                     consecutiveHits = 0;
                 }
                 return;
@@ -67,7 +89,17 @@ namespace BallGame
                 EventHub.BallFloorHit();
                 thrownBackIn = false;
                 consecutiveHits = 0;
-                EndGame();
+                BallScoreManager.Instance.ClearActions();
+                currentAttempts++;
+                
+                if (currentAttempts >= Attempts)
+                {
+                    EndGame();
+                }
+                else
+                {
+                    BallLevelManager.Instance.ResetBall();
+                }
                 return;
             }
             
@@ -140,6 +172,19 @@ namespace BallGame
 
             Gizmos.DrawLine(transform.position, transform.position + minDirection);
             Gizmos.DrawLine(transform.position, transform.position + maxDirection);
+        }
+
+        public void ResetBall()
+        {
+            rb.velocity = Vector2.zero;
+            SetBallGravityScale(0);
+            StartCoroutine(DelayedDrop());
+        }
+
+        private IEnumerator DelayedDrop()
+        {
+            yield return new WaitForSeconds(1f);
+            DropBall();
         }
     }
 }
