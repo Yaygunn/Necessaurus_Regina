@@ -25,15 +25,30 @@ namespace Manager.LeaderBoard.Communication
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
                 Initialize();
+                EventHub.Event_StartBallGameLevel += OnStartBallGame;
+                EventHub.Event_StartScrollerLevel += OnStartScrollGame;
             }
             else
             {
                 Destroy(gameObject);
             }
         }
-        string ID = "scrollerBoard";
+
+        readonly private string _scrollerId = "scrollerBoard";
+        readonly private string _ballGameId = "ballGame";
+        string _currentID = "scrollerBoard";
 
         private Action<SLeader[]> _returnLeaderBoard;
+
+        private void OnStartBallGame()
+        {
+            _currentID = _ballGameId;
+        }
+
+        private void OnStartScrollGame()
+        {
+            _currentID = _scrollerId;
+        }
 
         private void Initialize()
         {
@@ -52,7 +67,7 @@ namespace Manager.LeaderBoard.Communication
 
         public void SubmitScore(SLeader leader)
         {
-            LootLockerSDKManager.SubmitScore(leader.Name, leader.Score, ID, (response) =>
+            LootLockerSDKManager.SubmitScore(leader.Name, leader.Score, _currentID, (response) =>
             {
                 if (response.success)
                 {
@@ -73,7 +88,7 @@ namespace Manager.LeaderBoard.Communication
 
         private void GetBoard()
         {
-            LootLockerSDKManager.GetScoreList(ID, 10, 0, (response) =>
+            LootLockerSDKManager.GetScoreList(_currentID, 10, 0, (response) =>
             {
                 if (response.success)
                 {
