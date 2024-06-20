@@ -57,7 +57,6 @@ namespace Manager.LeaderBoard.Communication
                 if (response.success)
                 {
                     Debug.Log("submited score");
-                    GetBoard();
                 }
                 else
                 {

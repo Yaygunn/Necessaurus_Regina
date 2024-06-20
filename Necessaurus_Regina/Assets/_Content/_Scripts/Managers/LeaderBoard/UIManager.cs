@@ -13,16 +13,29 @@ namespace Manager.LeaderBoard.UI
         [SerializeField] private GameObject _newRecordEntry;
         [SerializeField] private TextMeshProUGUI _playerScoreText;
 
+        [Header("Color")]
+        [SerializeField] private Color _newLeaderColor;
+        private Color _standartColor;
         private int _maxNameSize { get; } = 15;
+
+        private string _namelessName { get; } = "______";
 
         private string _playerName; 
 
-        private int _score;
+        private int _playerScore;
+
+        private int _playerRankInLeaderBoard;
+
+        SLeader[] _leaders;
 
         [Header("testing")]
         [SerializeField] bool Set;
         [SerializeField] int Score;
 
+        private void Start()
+        {
+            _standartColor = _names[0].color;
+        }
 
         private void Update()
         {
@@ -35,7 +48,7 @@ namespace Manager.LeaderBoard.UI
 
         private void GameOverPlayerScore(int score)
         {
-            _score = score;
+            _playerScore = score;
             _playerScoreText.text = score.ToString();
             _newRecordEntry.SetActive(false);
             LeaderBoardManager.Instance.GetLeaderBoard(GetLeaderBoard);
@@ -43,23 +56,78 @@ namespace Manager.LeaderBoard.UI
 
         private void GetLeaderBoard(SLeader[] leaders)
         {
-            for(int i = 0; i < 10; i++)
-            {
-                _names[i].text = leaders[i].Name;
-                _scores[i].text = leaders[i].Score.ToString();
-            }
-            if (_score > leaders[9].Score)
+            _leaders = leaders;
+            ResetLastEntryColor();
+
+            if (_playerScore > leaders[9].Score)
             {
                 _newRecordEntry.SetActive(true);
+                DecideRank();
+                SetUIElementColor(_newLeaderColor, _playerRankInLeaderBoard);
+                SetUIValuesWithPlayerRank();
             }
             else
             {
+                _playerRankInLeaderBoard = 100;
                 _newRecordEntry.SetActive(false);
+                SetUIValuesWithoutPlayerRank();
             }
+        }
+
+        private void DecideRank()
+        {
+            for(int i = 0;i < 10;i++)
+            {
+                if (_leaders[i].Score < _playerScore)
+                {
+                    _playerRankInLeaderBoard = i;
+                    return;
+                }
+            }
+            _playerRankInLeaderBoard = 100;
+        }
+
+        private void SetUIValuesWithPlayerRank()
+        {
+            for (int i = 0; i < _playerRankInLeaderBoard; i++)
+            {
+                SetAnUIValue(_leaders[i], i);
+            }
+            SetAnUIValue(new SLeader(_namelessName, _playerScore), _playerRankInLeaderBoard);
+            for (int i = _playerRankInLeaderBoard + 1; i < 10; i++) 
+            {
+                SetAnUIValue(_leaders[i - 1], i);
+            }
+        }
+        private void SetUIValuesWithoutPlayerRank()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                SetAnUIValue(_leaders[i], i);
+            }
+        }
+        private void SetAnUIValue(SLeader leader, int index)
+        {
+            _names[index].text = leader.Name;
+            _scores[index].text = leader.Score.ToString();
+        }
+
+        private void SetUIElementColor(Color color, int index)
+        {
+            _names[index].color = color;
+            _scores[index].color = color;
+        }
+        private void ResetLastEntryColor()
+        {
+            if (_playerRankInLeaderBoard > 9)
+                return;
+
+            SetUIElementColor(_standartColor, _playerRankInLeaderBoard);
         }
         public void HighScoreSubmit()
         {
-            LeaderBoardManager.Instance.SubmitScore(new SLeader(_playerName, _score));
+            LeaderBoardManager.Instance.SubmitScore(new SLeader(_playerName, _playerScore));
+            _newRecordEntry.SetActive(false);
         }
 
         public void InputFieldTextChanged()
@@ -74,6 +142,11 @@ namespace Manager.LeaderBoard.UI
             else
             {
                 _playerName = newText;
+            }
+
+            if(_playerRankInLeaderBoard < 10) 
+            {
+                _names[_playerRankInLeaderBoard].text = _playerName;
             }
         }
     }
