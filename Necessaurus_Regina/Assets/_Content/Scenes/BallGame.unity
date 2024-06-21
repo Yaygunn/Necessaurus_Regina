@@ -1256,8 +1256,6 @@ MonoBehaviour:
   ContestantNameText: {fileID: 1305963139}
   StartLevelText: {fileID: 531390412}
   CountdownText: {fileID: 1299323219}
-  GameOverPanel: {fileID: 195046958}
-  GaveOverScore: {fileID: 1827788089}
   OnCountdownStart:
     m_PersistentCalls:
       m_Calls: []
