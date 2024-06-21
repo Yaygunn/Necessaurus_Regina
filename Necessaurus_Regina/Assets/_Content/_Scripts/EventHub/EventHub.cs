@@ -74,4 +74,20 @@ public static class EventHub
     }
 
     #endregion
+
+    #region Score
+
+    public static event Action<int> Event_PlayerScore;
+    public static void PlayerScore(int score)
+    {
+        Event_PlayerScore?.Invoke(score);
+    }
+
+    public static event Action<int> Event_PlayerEndGameScore;
+    public static void PlayerEndGameScore(int score)
+    {
+        Event_PlayerEndGameScore?.Invoke(score);
+    }
+
+    #endregion
 }
