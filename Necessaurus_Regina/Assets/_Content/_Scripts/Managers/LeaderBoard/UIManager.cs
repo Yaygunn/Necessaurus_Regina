@@ -6,7 +6,7 @@ namespace Manager.LeaderBoard.UI
 {
     public class UIManager : MonoBehaviour
     {
-        [Header("UýElements")]
+        [Header("Uï¿½Elements")]
         [SerializeField] private GameObject _boardParent;
         [SerializeField] private TextMeshProUGUI[] _names;
         [SerializeField] private TextMeshProUGUI[] _scores;

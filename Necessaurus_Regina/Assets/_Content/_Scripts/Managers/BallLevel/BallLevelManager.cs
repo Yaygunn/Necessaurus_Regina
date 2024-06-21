@@ -90,7 +90,7 @@ namespace BallGame.Managers
             
             OnLevelEnd?.Invoke();
 
-            EventHub.PlayerEndGameScore(5); // rather than 5, it must be player score
+            EventHub.PlayerEndGameScore( BallScoreManager.Instance.GetScore() ); // rather than 5, it must be player score
 
             Time.timeScale = 0;
         }
