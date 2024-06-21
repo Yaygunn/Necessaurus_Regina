@@ -7,6 +7,7 @@ namespace Manager.LeaderBoard.UI
     public class UIManager : MonoBehaviour
     {
         [Header("UýElements")]
+        [SerializeField] private GameObject _boardParent;
         [SerializeField] private TextMeshProUGUI[] _names;
         [SerializeField] private TextMeshProUGUI[] _scores;
         [SerializeField] private TMP_InputField _inputField;
@@ -16,7 +17,7 @@ namespace Manager.LeaderBoard.UI
         [Header("Color")]
         [SerializeField] private Color _newLeaderColor;
         private Color _standartColor;
-        private int _maxNameSize { get; } = 15;
+        private int _maxNameSize { get; } = 12;
 
         private string _namelessName { get; } = "______";
 
@@ -28,22 +29,15 @@ namespace Manager.LeaderBoard.UI
 
         SLeader[] _leaders;
 
-        [Header("testing")]
-        [SerializeField] bool Set;
-        [SerializeField] int Score;
 
         private void Start()
         {
             _standartColor = _names[0].color;
+            EventHub.Event_PlayerEndGameScore += GameOverPlayerScore;
         }
-
-        private void Update()
+        private void OnDestroy()
         {
-            if (Set)
-            {
-                Set = false;
-                GameOverPlayerScore(Score);
-            }
+            EventHub.Event_PlayerEndGameScore -= GameOverPlayerScore;
         }
 
         private void GameOverPlayerScore(int score)
@@ -56,6 +50,7 @@ namespace Manager.LeaderBoard.UI
 
         private void GetLeaderBoard(SLeader[] leaders)
         {
+            _boardParent.SetActive(true);
             _leaders = leaders;
             ResetLastEntryColor();
 

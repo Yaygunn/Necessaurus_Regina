@@ -19,6 +19,10 @@ namespace Manager.LevelChanger
                 Destroy(gameObject);
             }
         }
+        public void ReloadScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         public void OpenMainMenu()
         {
             ChangeLevel("MainMenu");
