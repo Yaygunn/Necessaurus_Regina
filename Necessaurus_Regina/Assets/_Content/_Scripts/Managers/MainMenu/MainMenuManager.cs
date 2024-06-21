@@ -76,7 +76,7 @@ public class MainMenuManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         
         float panelHeight = creditsContainer.GetComponent<RectTransform>().rect.height;
-        creditsContainer.anchoredPosition = new Vector2(creditsContainer.anchoredPosition.x, panelHeight);
+        creditsContainer.anchoredPosition = new Vector2(creditsContainer.anchoredPosition.x, -panelHeight * 0.2f);
         
         while (true)
         {

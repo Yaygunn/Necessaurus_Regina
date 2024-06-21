@@ -1440,8 +1440,10 @@ MonoBehaviour:
   creditsScreen: {fileID: 715853073}
   creditsPeople:
   - {fileID: 11400000, guid: 3a02e745bc0b1564494dc5f80112f481, type: 2}
+  - {fileID: 11400000, guid: 888cd6af24d085b49a705f846106bb3b, type: 2}
   - {fileID: 11400000, guid: 96f6d09c868990d40a589c9c293020ba, type: 2}
   - {fileID: 11400000, guid: 0e76fb9d8d58f734fb713e407d19bb94, type: 2}
+  - {fileID: 11400000, guid: fdb6691d82b81c64fa154d597f385aea, type: 2}
   creditPersonEntryPrefab: {fileID: 4596970420187418290, guid: df7ec6880e522f34aadeef58f45cda58, type: 3}
   creditsContainer: {fileID: 1257813988}
   scrollSpeed: 50

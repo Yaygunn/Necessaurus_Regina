@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c6e33f020246674e92d9a702167b1b2, type: 3}
-  m_Name: Mana
+  m_Name: Rio
   m_EditorClassIdentifier: 
-  FullName: Amana Zanella
-  Nickname: Mana
-  Role: Game Manager, Narrative Designer, Game Designer
-  CountryFlag: {fileID: 21300000, guid: ae50ac3766896a24586b97f119b1e512, type: 3}
-  ItchLink: https://amanaz.itch.io/
+  FullName: Riopixel
+  Nickname: 
+  Role: Pixel Artist
+  CountryFlag: {fileID: 21300000, guid: 9f00ed38327c5ec418b6eeaa0b4c3c88, type: 3}
+  ItchLink: 
