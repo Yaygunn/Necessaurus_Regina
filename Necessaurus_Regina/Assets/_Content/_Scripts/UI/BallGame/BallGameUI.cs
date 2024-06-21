@@ -18,10 +18,6 @@ namespace BallGame.UI
         public TextMeshProUGUI ContestantNameText;
         public TextMeshProUGUI StartLevelText;
         public TextMeshProUGUI CountdownText;
-        
-        [Header("Game Over Panel")]
-        public GameObject GameOverPanel;
-        public TextMeshProUGUI GaveOverScore;
 
         public UnityEvent OnCountdownStart;
         public UnityEvent OnCountdownEnd;
@@ -46,36 +42,13 @@ namespace BallGame.UI
             {
                 BallScoreManager.Instance.OnScoreChange.RemoveListener(UpdateScoreText);
             }
-            
-            if (BallLevelManager.Instance != null)
-            {
-                BallLevelManager.Instance.OnLevelEnd.RemoveListener(ShowGameOverPanel);
-            }
-        }
-
-        public void ShowGameOverPanel()
-        {
-            GaveOverScore.text = BallScoreManager.Instance.GetScore().ToString();
-            GameOverPanel.SetActive(true);
-        }
-
-        public void HideGameOverPanel()
-        {
-            GameOverPanel.SetActive(false);
         }
 
         private void Start()
         {
-            HideGameOverPanel();
             UpdateScoreText(BallScoreManager.Instance.GetScore());
             UpdateMove("", "");
             UpdateContestantName("Practice");
-            
-            
-            if (BallLevelManager.Instance != null)
-            {
-                BallLevelManager.Instance.OnLevelEnd.AddListener(ShowGameOverPanel);
-            }
             
             if (BallScoreManager.Instance != null)
             {

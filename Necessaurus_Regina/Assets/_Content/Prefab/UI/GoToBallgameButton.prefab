@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4770457077873197145}
   - component: {fileID: 7088453975497493867}
   m_Layer: 5
-  m_Name: GoToMainMenuButton
+  m_Name: GoToBallgameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7088453975497493867}
         m_TargetAssemblyTypeName: UI.GoBackMainMenu.MainMenu, Assembly-CSharp
-        m_MethodName: GoMainMenu
+        m_MethodName: GoBallgame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Menu
+  m_text: RESTART
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3ee046fefb4e417418f2bb409dda7734, type: 2}
   m_sharedMaterial: {fileID: 696233921163139790, guid: 3ee046fefb4e417418f2bb409dda7734, type: 2}
