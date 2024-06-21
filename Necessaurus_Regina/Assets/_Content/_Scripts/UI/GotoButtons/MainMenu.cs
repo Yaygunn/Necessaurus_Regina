@@ -9,5 +9,15 @@ namespace UI.GoBackMainMenu
         {
             LevelChanger.Instance.OpenMainMenu();
         }
+        
+        public void GoSidescroller()
+        {
+            LevelChanger.Instance.OpenSideScrollGame();
+        }
+        
+        public void GoBallgame()
+        {
+            LevelChanger.Instance.OpenBallGame();
+        }
     }
 }
