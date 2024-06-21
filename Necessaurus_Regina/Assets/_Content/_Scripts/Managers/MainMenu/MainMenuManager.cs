@@ -11,13 +11,14 @@ public class MainMenuManager : MonoBehaviour
     public GameObject creditsScreen;
     public List<CreditsPerson> creditsPeople = new List<CreditsPerson>();
     public CreditPersonEntry creditPersonEntryPrefab;
-    public Transform creditsContainer;
+    public RectTransform creditsContainer;
+    public float scrollSpeed = 20f;
+    
+    private Coroutine scrollCoroutine;
 
     private void Start()
     {
         ShowScreen("Menu");
-        
-        // Initialize credits once off
         LoadCredits();
     }
     
@@ -54,4 +55,39 @@ public class MainMenuManager : MonoBehaviour
             creditPersonEntry.Initialize(person);
         }
     }
+
+    public void ShowCredits()
+    {
+        scrollCoroutine = StartCoroutine(ScrollCredits());
+    }
+
+    public void CancelCredits()
+    {
+        if (scrollCoroutine != null)
+        {
+            StopCoroutine(scrollCoroutine);
+            scrollCoroutine = null;
+        }
+    }
+
+    private IEnumerator ScrollCredits()
+    {
+        // Apparanlty needed to wait for the next frame for the RectTransform to be updated
+        yield return new WaitForEndOfFrame();
+        
+        float panelHeight = creditsContainer.GetComponent<RectTransform>().rect.height;
+        creditsContainer.anchoredPosition = new Vector2(creditsContainer.anchoredPosition.x, panelHeight);
+        
+        while (true)
+        {
+            creditsContainer.anchoredPosition += Vector2.up * scrollSpeed * Time.deltaTime;
+            yield return null;
+
+            if (creditsContainer.anchoredPosition.y >= creditsContainer.rect.height)
+            {
+                creditsContainer.anchoredPosition = new Vector2(creditsContainer.anchoredPosition.x, -creditsContainer.rect.height);
+            }
+        }
+    }
+
 }
