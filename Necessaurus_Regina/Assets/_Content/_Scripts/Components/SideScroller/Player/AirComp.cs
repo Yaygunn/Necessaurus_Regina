@@ -1,3 +1,4 @@
+using SideScroller.Components.ShapeChange;
 using System;
 using System.Collections;
 using Unity.Mathematics;
@@ -28,11 +29,13 @@ namespace SideScroller.Components.Jump
         [SerializeField] private float _accelerationFall;
         [SerializeField] private float _FallMaxSpeed;
 
+        private ShapeChanger _shapeChanger;
         private float _startY;
 
         private void Start()
         {
             _startY = transform.position.y;
+            _shapeChanger = GetComponent<ShapeChanger>();
         }
         public void StartJump(Action jumpEnd)
         {
@@ -42,6 +45,7 @@ namespace SideScroller.Components.Jump
                 _speedCurrent = _speedAtJumpStart;
                 _tick = AscentTick;
                 EventHub.PlayerJump();
+                _shapeChanger.Jump();
             }
             else
             {
@@ -57,6 +61,7 @@ namespace SideScroller.Components.Jump
         public void JumpEnd()
         {
             _jumpEnd();
+            _shapeChanger.Land();
         }
 
         private void AscentTick()

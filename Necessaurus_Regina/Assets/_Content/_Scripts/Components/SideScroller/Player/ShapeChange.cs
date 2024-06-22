@@ -1,3 +1,4 @@
+using UnityEditor.Animations;
 using UnityEngine;
 
 namespace SideScroller.Components.ShapeChange
@@ -13,6 +14,13 @@ namespace SideScroller.Components.ShapeChange
         [Header("Legs")]
         [SerializeField] private GameObject _leftlegActive;
         [SerializeField] private GameObject _rightlegACtive;
+
+        [Header("AnimationController")]
+        [SerializeField] Animator _animator;
+
+        // ap = anim parameter
+        private string _apBool_Jump { get; } = "Jump";
+        private string _apBool_Fall { get; } = "Fall";
 
         [Header("Colliders")]
         [SerializeField] private Collider2D _normalCollider;
@@ -54,6 +62,21 @@ namespace SideScroller.Components.ShapeChange
             _normal.SetActive(false);
             EmptyLeg();
             _damaged.SetActive(true);
+
+            _animator.SetBool(_apBool_Fall, true);
+            _animator.SetBool(_apBool_Jump, false);
+        }
+        public void Jump()
+        {
+            _animator.SetBool(_apBool_Jump, true);
+        }
+        public void Land()
+        {
+            _animator.SetBool(_apBool_Jump, false);
+        }
+        public void RecoverDamage()
+        {
+            _animator.SetBool(_apBool_Fall, false);
         }
     }
 }

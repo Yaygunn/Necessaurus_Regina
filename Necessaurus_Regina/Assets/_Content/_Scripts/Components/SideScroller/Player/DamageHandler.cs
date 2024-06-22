@@ -40,6 +40,7 @@ namespace SideScroller.Components.Damage
 
             _isDamaged = false;
             _shapeChanger.Normal();
+            _shapeChanger.RecoverDamage();
             _playerController.ChangeState(_playerController.idleState);
         }
     }
