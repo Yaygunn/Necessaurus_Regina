@@ -8,6 +8,7 @@ namespace UI.GoBackMainMenu
         public void GoMainMenu()
         {
             LevelChanger.Instance.OpenMainMenu();
+            Time.timeScale = 1.0f;
         }
         
         public void GoSidescroller()
