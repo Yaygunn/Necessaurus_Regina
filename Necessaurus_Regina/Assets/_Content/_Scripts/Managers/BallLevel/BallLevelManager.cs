@@ -86,9 +86,6 @@ namespace BallGame.Managers
             OnLevelEnd?.Invoke();
 
             EventHub.PlayerEndGameScore( BallScoreManager.Instance.GetScore() );
-
-            timeRemaining = 0f;
-            BallGameUI.Instance.SetTimer(timeRemaining);
         }
     }   
 }
