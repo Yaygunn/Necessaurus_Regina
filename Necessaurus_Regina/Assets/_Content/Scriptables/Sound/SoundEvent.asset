@@ -61,6 +61,27 @@ MonoBehaviour:
       Data3: -1304990837
       Data4: -95423525
     Path: event:/SFX/Footvolley/BallChest
+  <DogHit>k__BackingField:
+    Guid:
+      Data1: 289071732
+      Data2: 1097875924
+      Data3: -597589074
+      Data4: -417344593
+    Path: event:/SFX/Jogging/DogHit
+  <ChairHit>k__BackingField:
+    Guid:
+      Data1: 310986065
+      Data2: 1284984229
+      Data3: -456913217
+      Data4: -1478102274
+    Path: event:/SFX/Jogging/FlyingChair
+  <FlipFlopHit>k__BackingField:
+    Guid:
+      Data1: 310986065
+      Data2: 1284984229
+      Data3: -456913217
+      Data4: -1478102274
+    Path: event:/SFX/Jogging/FlyingChair
   <Music>k__BackingField:
     Guid:
       Data1: -582322521

@@ -1,4 +1,5 @@
 using BallGame.Player.Controller;
+using Component.ObstacleType;
 using System;
 using UnityEngine;
 
@@ -21,6 +22,12 @@ public static class EventHub
     public static void PlayerJump()
     {
         Event_PlayerJump?.Invoke();
+    }
+
+    public static event Action<EObsType> Event_PlayerCollided;
+    public static void PlayerCollided(EObsType type)
+    {
+        Event_PlayerCollided?.Invoke(type);
     }
 
     #endregion

@@ -1,6 +1,7 @@
 using UnityEngine;
 using Audio.FmodCommunication;
 using Audio.Events;
+using Component.ObstacleType;
 
 namespace Audio.Scroller
 {
@@ -15,12 +16,13 @@ namespace Audio.Scroller
         public void Activate()
         {
             EventHub.Event_PlayerJump += OnJumped;
-            Debug.Log("Activated");
+            EventHub.Event_PlayerCollided += Collided;
         }
 
         public void DeActivate()
         {
             EventHub.Event_PlayerJump -= OnJumped;
+            EventHub.Event_PlayerCollided -= Collided;
         }
 
 
@@ -32,6 +34,22 @@ namespace Audio.Scroller
         private void OnJumped()
         {
             _com.PlayOneShot(_data.Jump);
+        }
+
+        private void Collided(EObsType type)
+        {
+            switch (type)
+            {
+                case EObsType.Dog:
+                    _com.PlayOneShot(_data.DogHit);
+                    break;
+                case EObsType.FlipFlop:
+                    _com.PlayOneShot(_data.FlipFlopHit);
+                    break;
+                case EObsType.Chair:
+                    _com.PlayOneShot(_data.ChairHit);
+                    break;
+            }
         }
     }
 }
