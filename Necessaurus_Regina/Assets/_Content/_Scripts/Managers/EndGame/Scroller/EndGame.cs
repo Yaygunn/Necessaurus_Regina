@@ -1,3 +1,4 @@
+using Manager.Scroller.Score;
 using UnityEngine;
 
 namespace Manager.Scroller.Timer
@@ -5,6 +6,7 @@ namespace Manager.Scroller.Timer
 
     public class EndGame : MonoBehaviour
     {
+        [SerializeField] private ScoreManager _score;
         private bool _gameEnded;
 
         private void OnEnable()
@@ -24,6 +26,7 @@ namespace Manager.Scroller.Timer
 
             print("Ended The Game");
             Time.timeScale = 0;
+            EventHub.PlayerEndGameScore(_score.GetScore());
         }
     }
 }
