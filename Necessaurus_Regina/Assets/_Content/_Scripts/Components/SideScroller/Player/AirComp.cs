@@ -36,6 +36,7 @@ namespace SideScroller.Components.Jump
         {
             _startY = transform.position.y;
             _shapeChanger = GetComponent<ShapeChanger>();
+            _tick = EmptyTick;
         }
         public void StartJump(Action jumpEnd)
         {
@@ -58,10 +59,14 @@ namespace SideScroller.Components.Jump
             _tick();
         }
 
+        private void Update()
+        {
+            _tick();
+        }
         public void JumpEnd()
         {
-            _jumpEnd();
             _shapeChanger.Land();
+            _jumpEnd();
         }
 
         private void AscentTick()
@@ -110,7 +115,7 @@ namespace SideScroller.Components.Jump
             transform.position = pos;
             _speedCurrent += acceleration * Time.deltaTime;
         }
-
+        private void EmptyTick() { }
         private bool IsOnGround()
         {
             return transform.position.y <= _startY;
@@ -125,7 +130,9 @@ namespace SideScroller.Components.Jump
 
         public void OnDamage()
         {
-            StartCoroutine(DamageFall());
+            //StartCoroutine(DamageFall());
+            _speedCurrent = math.min(_speedCurrent, _FallMaxSpeed);
+            _tick = FallMovement;
         }
 
         private IEnumerator DamageFall()
@@ -142,6 +149,8 @@ namespace SideScroller.Components.Jump
         private void FallMovement()
         {
             JumpMovement(_accelerationFall);
+            if(IsOnGround())
+                SetPositionToGround();
         }
     }
 }

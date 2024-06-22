@@ -14,7 +14,6 @@ namespace SideScroller.Player.Controller
         public override void Tick()
         {
             base.Tick();
-            _player.airComp.JumpTick();
         }
 
         public override void OnJump()
