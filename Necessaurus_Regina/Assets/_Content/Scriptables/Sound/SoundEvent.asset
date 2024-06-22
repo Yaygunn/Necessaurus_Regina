@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Jump>k__BackingField:
     Guid:
-      Data1: 289071732
-      Data2: 1097875924
-      Data3: -597589074
-      Data4: -417344593
-    Path: event:/SFX/Jogging/DogHit
+      Data1: -1092337592
+      Data2: 1307313334
+      Data3: -702420838
+      Data4: -2117465086
+    Path: event:/SFX/Jogging/PlayerJump
   <Step>k__BackingField:
     Guid:
       Data1: -2042683179
