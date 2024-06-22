@@ -1747,7 +1747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1647360420
 Transform:
   m_ObjectHideFlags: 0
@@ -1775,9 +1775,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd8433675f6c7a4c91b19a7429465c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabBackGround: {fileID: 2846280976679746474, guid: 445768afec77c914aa7a2a473a4dc042, type: 3}
-  _DistanceBetweenSpawns: 10
-  _spawnX: 20
+  _minDistanceBetweenSpawns: 10
+  _maxDistanceBetweenSpawns: 20
+  _backGroundHolder: {fileID: 11400000, guid: e8f0bc7b394fb8b4c8dfe32708274b27, type: 2}
   _destroyX: -5
 --- !u!1 &1724685240
 GameObject:

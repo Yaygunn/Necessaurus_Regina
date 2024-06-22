@@ -1,4 +1,4 @@
-using Manager.ObjectPool;
+using Scriptable.BackGroundHolder;
 using SideScroller.Components.ScrollObject;
 using UnityEngine;
 
@@ -6,15 +6,19 @@ namespace Manager.SideScroll.Spawner.BackGround
 {
     public class BackGroundSpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject _prefabBackGround;
+        [Header("DistanceBetweenSpawns")]
+        [SerializeField] private float _minDistanceBetweenSpawns;
+        [SerializeField] private float _maxDistanceBetweenSpawns;
 
-        [SerializeField] private float _DistanceBetweenSpawns;
-
-        [Header("Positions")]
-        [SerializeField] private float _spawnX;
-        [SerializeField] private float _destroyX;
+        private float _distanceFormNextSpawn;
 
         private float _distanceSinceLastSpawn;
+
+        [SerializeField] private BackGroundHolder _backGroundHolder;
+
+        [Header("Positions")]
+        [SerializeField] private float _destroyX;
+
 
         private void OnEnable()
         {
@@ -28,30 +32,24 @@ namespace Manager.SideScroll.Spawner.BackGround
         private void OnMove(float x)
         {
             _distanceSinceLastSpawn += x * Time.deltaTime;
-            if (_distanceSinceLastSpawn >= _DistanceBetweenSpawns)
+            if (_distanceSinceLastSpawn >= _distanceFormNextSpawn)
             {
-                _distanceSinceLastSpawn -= _DistanceBetweenSpawns;
-                Spawn(_spawnX);
+                _distanceSinceLastSpawn -= _distanceFormNextSpawn;
+                Spawn();
+                SelectNewSpawnDistance();
             }
         }
-        private void Spawn(float x)
+        private void Spawn()
         {
-            GameObject obj = ObjectPoolManager.Instance.GetObject(_prefabBackGround);
-            Vector3 pos = new Vector3(x, 5, 0);
-            obj.transform.position = pos;
+            GameObject obj = _backGroundHolder.GetRandomObject();
             obj.GetComponent<ScrollObject>().SetEndLine(_destroyX);
             obj.SetActive(true);
         }
 
-        private void Start()
+        private void SelectNewSpawnDistance()
         {
-            float xpos = _spawnX;
-            while(xpos > _destroyX)
-            {
-                Spawn(xpos);
-                xpos -= _DistanceBetweenSpawns;
-            }
+            _distanceFormNextSpawn = UnityEngine.Random.Range(_minDistanceBetweenSpawns, _maxDistanceBetweenSpawns);
         }
-
+     
     }
 }
