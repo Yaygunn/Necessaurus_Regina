@@ -42,13 +42,23 @@ namespace Manager.Audio
 
             _musicAudio = new MusicAudio(_fmodCommunication, _eventBindingSO);
 
-            //_scrollerAudio.Activate();
 
-            _ballGameAudio.Activate();
+            EventHub.Event_StartBallGameLevel += OpenBallGame;
+            EventHub.Event_StartScrollerLevel += OpenScrollGame;
 
             _musicAudio.Activate();
         }
 
+        private void OpenBallGame()
+        {
+            _scrollerAudio.DeActivate();
+            _ballGameAudio.Activate();
+        }
+        private void OpenScrollGame()
+        {
+            _scrollerAudio.Activate();
+            _ballGameAudio.DeActivate();
+        }
     }
     
     
