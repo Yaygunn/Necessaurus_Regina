@@ -38,11 +38,6 @@ namespace BallGame.Managers
                 Destroy(gameObject);
             }
         }
-
-        private void Start()
-        {
-            Time.timeScale = 1;
-        }
         
         private void InitalizeReferences()
         {
@@ -90,9 +85,7 @@ namespace BallGame.Managers
             
             OnLevelEnd?.Invoke();
 
-            EventHub.PlayerEndGameScore( BallScoreManager.Instance.GetScore() ); // rather than 5, it must be player score
-
-            Time.timeScale = 0;
+            EventHub.PlayerEndGameScore( BallScoreManager.Instance.GetScore() );
         }
     }   
 }
