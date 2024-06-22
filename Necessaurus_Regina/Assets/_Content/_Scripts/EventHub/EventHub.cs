@@ -135,4 +135,20 @@ public static class EventHub
     }
 
     #endregion
+
+    public static event Action Event_StartGame;
+    public static void StartGame()
+    {
+        Event_StartGame?.Invoke();
+    }
+    public static event Action Event_EndGame;
+    public static void EndGame()
+    {
+        Event_EndGame?.Invoke();
+    }
+    public static event Action<float> Event_RemainingTime;
+    public static void RemainingTime(float time)
+    {
+        Event_RemainingTime?.Invoke(time);
+    }
 }
