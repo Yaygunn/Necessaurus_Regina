@@ -6,29 +6,13 @@ using Manager.ObjectPool;
 namespace Test.Yaygun
 {
     public class TestYaygun : MonoBehaviour
-    {      
-        [SerializeField] bool menu;
-        [SerializeField] bool Scroller;
-        [SerializeField] bool Ball;
+    {
 
+        [SerializeField] private float speed;
 
         private void Update()
         {
-            if(menu)
-            {
-                menu = false;
-                EventHub.StartMenu();
-            }
-            if(Scroller)
-            {
-                Scroller = false;
-                EventHub.StartScrollerLevel();
-            }
-            if (Ball)
-            {
-                Ball = false;
-                EventHub.StartBallGameLevel();
-            }
+            EventHub.ParallaxMove(speed * Time.deltaTime);
         }
 
     }

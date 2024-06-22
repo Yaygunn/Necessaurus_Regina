@@ -90,4 +90,14 @@ public static class EventHub
     }
 
     #endregion
+
+    #region General
+
+    public static event Action<float> Event_ParallaxMove;
+    public static void ParallaxMove(float moveAmount)
+    {
+        Event_ParallaxMove?.Invoke(moveAmount);
+    }
+
+    #endregion
 }
