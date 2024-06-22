@@ -22,6 +22,8 @@ namespace BallGame.UI
         public UnityEvent OnCountdownStart;
         public UnityEvent OnCountdownEnd;
         
+        private Coroutine _timerCoroutine;
+        
         public static BallGameUI Instance { get; private set; }
 
         private void Awake()
@@ -42,6 +44,11 @@ namespace BallGame.UI
             {
                 BallScoreManager.Instance.OnScoreChange.RemoveListener(UpdateScoreText);
             }
+
+            if (BallLevelManager.Instance != null)
+            {
+                BallLevelManager.Instance.OnLevelEnd.RemoveListener(StopTimers);
+            }
         }
 
         private void Start()
@@ -54,6 +61,18 @@ namespace BallGame.UI
             {
                 BallScoreManager.Instance.OnScoreChange.AddListener(UpdateScoreText);
             }
+
+            if (BallLevelManager.Instance != null)
+            {
+                BallLevelManager.Instance.OnLevelEnd.AddListener(StopTimers);
+            }
+        }
+
+        private void StopTimers()
+        {
+            StopCoroutine(_timerCoroutine);
+            _timerCoroutine = null;
+            SetTimerText(0f);
         }
 
         private void UpdateScoreText(int score, BallMove move = null)
@@ -92,7 +111,12 @@ namespace BallGame.UI
         
         public void SetTimer(float time)
         {
-            StartCoroutine(TimerCoroutine(time));
+            _timerCoroutine = StartCoroutine(TimerCoroutine(time));
+        }
+
+        private void SetTimerText(float time)
+        {
+            TimerText.text = $"Time: {Mathf.FloorToInt(time / 60):00}:{Mathf.FloorToInt(time % 60):00}";
         }
 
         private IEnumerator TimerCoroutine(float time)
@@ -100,7 +124,7 @@ namespace BallGame.UI
             while (time > 0)
             {
                 time -= Time.deltaTime;
-                TimerText.text = $"Time: {Mathf.FloorToInt(time / 60):00}:{Mathf.FloorToInt(time % 60):00}";
+                SetTimerText(time);
                 yield return null;
             }
 
