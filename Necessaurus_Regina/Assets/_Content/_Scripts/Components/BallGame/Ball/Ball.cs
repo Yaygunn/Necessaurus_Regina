@@ -25,6 +25,7 @@ namespace BallGame
         private int currentAttempts = 0;
 
         public Rigidbody2D rb {  get; private set; }
+        private CircleCollider2D _collider;
         private Vector3 playerPositionAtBounce;
         private int consecutiveHits = 0;
         private bool isFrozen = false;
@@ -33,14 +34,25 @@ namespace BallGame
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            _collider = GetComponent<CircleCollider2D>();
+                
             SetBallGravityScale(0);
             
             BallLevelManager.Instance.OnLevelStart.AddListener(DropBall);
+            BallLevelManager.Instance.OnLevelEnd.AddListener(FreezeBall);
         }
 
         private void DropBall()
         {
+            _collider.enabled = true;
             SetBallGravityScale(BallGravityScale);
+        }
+
+        private void FreezeBall()
+        {
+            rb.velocity = Vector2.zero;
+            SetBallGravityScale(0f);
+            _collider.enabled = false;
         }
 
         /**
