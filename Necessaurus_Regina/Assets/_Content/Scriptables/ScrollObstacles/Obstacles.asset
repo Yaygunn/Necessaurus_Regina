@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Obstacles
   m_EditorClassIdentifier: 
   obstacles:
-  - <_prefab>k__BackingField: {fileID: 3525251722718031324, guid: 24db0f71fc0c29842bd59d0c858be5cb, type: 3}
+  - <_prefab>k__BackingField: {fileID: 3865773513621822442, guid: 091a2388b06b2ad4a830a80be86e3aae, type: 3}
     <_weightForRandomSelection>k__BackingField: 1
-  - <_prefab>k__BackingField: {fileID: 6234155502591535813, guid: 37af238a0e212c841ad5d4d101154e33, type: 3}
-    <_weightForRandomSelection>k__BackingField: 3
+  - <_prefab>k__BackingField: {fileID: 5133600687886883453, guid: bc149020516aeae4e8cfd9beba761bb1, type: 3}
+    <_weightForRandomSelection>k__BackingField: 4
+  - <_prefab>k__BackingField: {fileID: 8925849590350739931, guid: 361b07f51bde45847b3cbda19d2d7028, type: 3}
+    <_weightForRandomSelection>k__BackingField: 4
