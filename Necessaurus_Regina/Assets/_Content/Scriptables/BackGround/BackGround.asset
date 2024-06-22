@@ -14,6 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   S_Background:
   - <_prefab>k__BackingField: {fileID: 915018884665634386, guid: e4ef29e0dd1cd3c4d8f5c184bbdb814f, type: 3}
-    <_spawnRate>k__BackingField: 1
+    <_spawnRate>k__BackingField: 3
     _minY: 1.29
     _maxY: 2.13
+  - <_prefab>k__BackingField: {fileID: 7277856175003730135, guid: 6e4310726d06ade4c8467aa3026bf840, type: 3}
+    <_spawnRate>k__BackingField: 1
+    _minY: 1.4
+    _maxY: 2.3
+  - <_prefab>k__BackingField: {fileID: 7277856175003730135, guid: 42eaf6df324d8ce4d88a1b01beb7bd29, type: 3}
+    <_spawnRate>k__BackingField: 5
+    _minY: 1.98
+    _maxY: 2.44
+  - <_prefab>k__BackingField: {fileID: 7277856175003730135, guid: 220049f4384545c44b8764f930f84e2a, type: 3}
+    <_spawnRate>k__BackingField: 10
+    _minY: 0
+    _maxY: 0
+  - <_prefab>k__BackingField: {fileID: 7277856175003730135, guid: 8361a6fce95ba7d4a96f675b37bb329e, type: 3}
+    <_spawnRate>k__BackingField: 15
+    _minY: 2.13
+    _maxY: 2.22
