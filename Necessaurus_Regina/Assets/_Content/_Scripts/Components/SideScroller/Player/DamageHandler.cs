@@ -1,3 +1,4 @@
+using Component.ObstacleType;
 using SideScroller.Components.ShapeChange;
 using SideScroller.Player.Controller;
 using System.Collections;
@@ -26,7 +27,11 @@ namespace SideScroller.Components.Damage
             {
                 if (_isDamaged)
                     return;
+                ObstacleType obstacle = collision.GetComponent<ObstacleType>();
+                if (obstacle == null)
+                    return;
 
+                EventHub.PlayerCollided(obstacle.type);
                 _isDamaged = true;
                 _playerController.CurrentState.OnDamage();
                 _shapeChanger.GetDamage();
