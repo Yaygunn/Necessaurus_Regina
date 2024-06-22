@@ -20,6 +20,7 @@ namespace SideScroller.Components.ShapeChange
         // ap = anim parameter
         private string _apBool_Jump { get; } = "Jump";
         private string _apBool_Fall { get; } = "Fall";
+        private string _apBool_Slide { get; } = "Slide";
 
         [Header("Colliders")]
         [SerializeField] private Collider2D _normalCollider;
@@ -29,6 +30,8 @@ namespace SideScroller.Components.ShapeChange
             _crouch.SetActive(true);
             _normal.SetActive(false);
             _normalCollider.enabled = false;
+
+            _animator.SetBool(_apBool_Slide, true);
         }
 
         public void Normal()
@@ -37,6 +40,8 @@ namespace SideScroller.Components.ShapeChange
             _normal.SetActive(true);
             _damaged.SetActive(false);
             _normalCollider.enabled = true;
+
+            _animator.SetBool(_apBool_Slide, false);
         }
 
         public void LeftStep()
