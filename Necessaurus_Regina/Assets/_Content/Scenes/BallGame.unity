@@ -1034,7 +1034,7 @@ MonoBehaviour:
   SpawnInterval: 20
   SpawnAfter: 10
   MaxSpawns: 3
-  StopSpawnOnKill: 1
+  StopSpawnOnKill: 0
   SpawnPoint: {fileID: 1547539558}
 --- !u!4 &482837632
 Transform:
@@ -1296,7 +1296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -53.998108, y: 59.737698}
+  m_AnchoredPosition: {x: -56.5, y: 22}
   m_SizeDelta: {x: 92.0038, y: 17.1492}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &501477288
@@ -2486,7 +2486,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.000015258789}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 100, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &953374099
 MonoBehaviour:
@@ -2559,10 +2559,10 @@ RectTransform:
   - {fileID: 501477287}
   m_Father: {fileID: 492120477}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 319.99997, y: -212.49997}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -72.20001, y: 13.799988}
+  m_SizeDelta: {x: 100, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1060220981
 CanvasRenderer:
