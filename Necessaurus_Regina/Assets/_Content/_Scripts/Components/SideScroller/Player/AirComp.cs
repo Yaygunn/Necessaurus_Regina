@@ -37,7 +37,7 @@ namespace SideScroller.Components.Jump
         public void StartJump(Action jumpEnd)
         {
             _jumpEnd = jumpEnd;
-            if (IsGrounded())
+            if (IsOnGround())
             {
                 _speedCurrent = _speedAtJumpStart;
                 _tick = AscentTick;
@@ -45,8 +45,7 @@ namespace SideScroller.Components.Jump
             }
             else
             {
-                _speedCurrent = 0;
-                StartDescentTick();
+                print("Trying to jump but not on the ground");
             }
         }
 
@@ -105,12 +104,6 @@ namespace SideScroller.Components.Jump
             pos.y += _speedCurrent * Time.deltaTime;
             transform.position = pos;
             _speedCurrent += acceleration * Time.deltaTime;
-        }
-        public bool IsGrounded()
-        {
-            if(Physics2D.Raycast(_groundCheckPosition.position, Vector2.down, _groundCheckRayLength, _groundLayers))
-                return true;
-            return false;
         }
 
         private bool IsOnGround()
