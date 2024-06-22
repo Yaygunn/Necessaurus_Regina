@@ -82,6 +82,27 @@ MonoBehaviour:
       Data3: -456913217
       Data4: -1478102274
     Path: event:/SFX/Jogging/FlyingChair
+  <UIHover>k__BackingField:
+    Guid:
+      Data1: 1397447054
+      Data2: 1101488012
+      Data3: -533903437
+      Data4: 1449240491
+    Path: event:/SFX/UI/UIHover
+  <UIBack>k__BackingField:
+    Guid:
+      Data1: -15596274
+      Data2: 1107640090
+      Data3: 817177227
+      Data4: -92511000
+    Path: event:/SFX/UI/UIBack
+  <UIOK>k__BackingField:
+    Guid:
+      Data1: 974744134
+      Data2: 1225032549
+      Data3: -1741317209
+      Data4: 1877054155
+    Path: event:/SFX/UI/UIOK
   <Music>k__BackingField:
     Guid:
       Data1: -582322521

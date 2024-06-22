@@ -28,6 +28,11 @@ namespace Audio.Events
         [field: SerializeField] public EventReference FlipFlopHit { get; private set; }
 
 
+        [field: SerializeField] public EventReference UIHover { get; private set; }
+        [field: SerializeField] public EventReference UIBack { get; private set; }
+        [field: SerializeField] public EventReference UIOK { get; private set; }
+
+
         [field:SerializeField] public EventReference Music { get; private set; }
     }
 }

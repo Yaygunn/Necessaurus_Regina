@@ -113,4 +113,26 @@ public static class EventHub
     }
 
     #endregion
+
+    #region UI
+
+    public static event Action Event_UIHower;
+    public static void UIHower()
+    {
+        Event_UIHower?.Invoke();
+    }
+
+    public static event Action Event_UIOK;
+    public static void UIOK()
+    {
+        Event_UIOK?.Invoke();
+    }
+
+    public static event Action Event_UIBack;
+    public static void UIBack()
+    {
+        Event_UIBack?.Invoke();
+    }
+
+    #endregion
 }
