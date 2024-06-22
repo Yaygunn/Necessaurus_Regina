@@ -40,6 +40,7 @@ namespace Manager.ScrollSpeedManager
             _currentSpeed -= _currentSpeed * _accelerationConstant * Time.deltaTime;
             _currentSpeed = math.clamp(_currentSpeed, 0, _maxSpeed);
             EventHub.MoveSpeed(_currentSpeed);
+            EventHub.MoveSpeedRate(_currentSpeed / _maxSpeed);
         }
         private void OnPlayerStep()
         {

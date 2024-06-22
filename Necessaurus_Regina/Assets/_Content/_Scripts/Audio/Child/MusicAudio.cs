@@ -18,6 +18,7 @@ namespace Audio.Music
             EventHub.Event_StartMenu += OnMenu;
             EventHub.Event_StartScrollerLevel += OnScrollerLevel;
             EventHub.Event_StartBallGameLevel += OnBallGameLevel;
+            EventHub.Event_MoveSpeedRate += PlayerSpeedRate;
 
             _com.SetInstance(ref _musicInstance, _data.Music);
         }
@@ -27,6 +28,7 @@ namespace Audio.Music
             EventHub.Event_StartMenu -= OnMenu;
             EventHub.Event_StartScrollerLevel -= OnScrollerLevel;
             EventHub.Event_StartBallGameLevel -= OnBallGameLevel;
+            EventHub.Event_MoveSpeedRate -= PlayerSpeedRate;
 
             _com.RelaeseInstance(ref _musicInstance);
         }
@@ -47,6 +49,7 @@ namespace Audio.Music
 
         private void OnScrollerLevel()
         {
+            PlayerSpeedRate(0);
             _com.PlayInstanceIfNotPlaying(ref _musicInstance, _data.Music);
             _com.SetParameter(ref _musicInstance, "Song", 1);
         }
@@ -57,5 +60,9 @@ namespace Audio.Music
             _com.SetParameter(ref _musicInstance, "Song", 2);
         }
 
+        private void PlayerSpeedRate(float rate)
+        {
+            _com.SetGlobalParameter("Speed", rate);
+        }
     }
 }

@@ -12,6 +12,12 @@ public static class EventHub
         Event_MoveSpeed?.Invoke(speed);
     }
 
+    public static event Action<float> Event_MoveSpeedRate;
+    public static void MoveSpeedRate(float speed)
+    {
+        Event_MoveSpeedRate?.Invoke(speed);
+    }
+
     public static event Action Event_PlayerStep;
     public static void PlayerStep()
     {
