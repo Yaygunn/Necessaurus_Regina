@@ -19,6 +19,13 @@ MonoBehaviour:
       Data3: -597589074
       Data4: -417344593
     Path: event:/SFX/Jogging/DogHit
+  <Step>k__BackingField:
+    Guid:
+      Data1: -2042683179
+      Data2: 1335488607
+      Data3: -805593952
+      Data4: 672412224
+    Path: event:/SFX/Jogging/Footstep
   <BirdHit>k__BackingField:
     Guid:
       Data1: -1943385766

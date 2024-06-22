@@ -17,12 +17,14 @@ namespace Audio.Scroller
         {
             EventHub.Event_PlayerJump += OnJumped;
             EventHub.Event_PlayerCollided += Collided;
+            EventHub.Event_PlayerStep += PlayerStep;
         }
 
         public void DeActivate()
         {
             EventHub.Event_PlayerJump -= OnJumped;
             EventHub.Event_PlayerCollided -= Collided;
+            EventHub.Event_PlayerStep -= PlayerStep;
         }
 
 
@@ -50,6 +52,11 @@ namespace Audio.Scroller
                     _com.PlayOneShot(_data.ChairHit);
                     break;
             }
+        }
+
+        private void PlayerStep()
+        {
+            _com.PlayOneShot(_data.Step);
         }
     }
 }
