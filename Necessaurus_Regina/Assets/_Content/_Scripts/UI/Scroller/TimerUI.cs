@@ -13,13 +13,13 @@ public class TimerUI : MonoBehaviour
         _timerText.text = "00:00";
         HideTime();
         
+        EventHub.Event_RemainingTime += UpdateTime;
         EventHub.Event_StartGame += InitializeTimerListening;
     }
 
     private void InitializeTimerListening()
     {
         _timerText.gameObject.SetActive(true);
-        EventHub.Event_RemainingTime += UpdateTime;
         EventHub.Event_EndGame += HideTime;
     }
 

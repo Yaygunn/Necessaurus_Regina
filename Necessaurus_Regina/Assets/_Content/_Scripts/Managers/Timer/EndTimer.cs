@@ -12,6 +12,9 @@ namespace Manager.Timer
         {
             EventHub.Event_StartGame += OnStart;
             EventHub.Event_EndGame += OnGameEnd;
+
+            _currentTime = _endTime;
+            EventHub.RemainingTime(_currentTime);
         }
 
         private void OnDisable()
@@ -26,6 +29,8 @@ namespace Manager.Timer
                 return;
 
             _isPlaying = true;
+
+            EventHub.RemainingTime(_currentTime);
             StartCoroutine(EndTiming());
         }
 
@@ -36,7 +41,6 @@ namespace Manager.Timer
 
         private IEnumerator EndTiming()
         {
-            _currentTime = _endTime;
             while (_currentTime > 0) 
             {
                 _currentTime--;
