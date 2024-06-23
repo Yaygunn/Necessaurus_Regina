@@ -20,12 +20,15 @@ namespace BallGame.Components.Player.HitPoint
 
         private Color _pressedColor = Color.white;
 
+        bool _onEndTime = true;
+
         private void Start()
         {
             _normalColor.a = 0;
             _collider = GetComponent<Collider2D>();
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _spriteRenderer.color = _normalColor;
+            _pressedColor.a = 0.3f;
         }
         public void ActivateHit(Action endAction)
         {
@@ -38,10 +41,35 @@ namespace BallGame.Components.Player.HitPoint
 
         private IEnumerator EndOperation()
         {
+            _onEndTime = false;
             yield return new WaitForSeconds(_collisionEndTime);
 
             _collider.enabled = false;
             _spriteRenderer.color = _normalColor;
+            _onEndTime = true;
+
+            yield return new WaitForSeconds(_moveEndTime);
+
+            _endAction();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (!collision.CompareTag("Ball"))
+                return;
+
+            _spriteRenderer.color = _normalColor;
+            if(!_onEndTime)
+            {
+                StopAllCoroutines();
+                StartCoroutine(End2());
+            }
+        }
+        private IEnumerator End2()
+        {
+            _collider.enabled = false;
+            _spriteRenderer.color = _normalColor;
+            _onEndTime = true;
 
             yield return new WaitForSeconds(_moveEndTime);
 
