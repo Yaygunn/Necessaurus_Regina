@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c6e33f020246674e92d9a702167b1b2, type: 3}
-  m_Name: Ened
+  m_Name: Pedras
   m_EditorClassIdentifier: 
-  FullName: Ened
-  Nickname: Ened
-  Role: Programmer
-  CountryFlag: {fileID: 21300000, guid: 4a15b4725cc70a04f82095597eecf209, type: 3}
-  ItchLink: https://kartoffelkampf.itch.io/
+  FullName: Pedras
+  Nickname: Pedras
+  Role: Composer
+  CountryFlag: {fileID: 21300000, guid: ae50ac3766896a24586b97f119b1e512, type: 3}
+  ItchLink: 
