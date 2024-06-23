@@ -4726,6 +4726,7 @@ GameObject:
   - component: {fileID: 1011550180382928978}
   - component: {fileID: 5676349830073550003}
   - component: {fileID: 7992293884938361928}
+  - component: {fileID: 7992293884938361929}
   m_Layer: 5
   m_Name: TutorialUI - SideScroller
   m_TagString: Untagged
@@ -5028,6 +5029,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &7992293884938361929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4879510089714604380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f991416f87d80f4bbc3acc6d0c19571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8423625450011118048
 GameObject:
   m_ObjectHideFlags: 0
