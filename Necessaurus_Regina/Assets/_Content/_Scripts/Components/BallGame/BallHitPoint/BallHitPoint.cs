@@ -16,16 +16,22 @@ namespace BallGame.Components.Player.HitPoint
         
         private SpriteRenderer _spriteRenderer;
 
+        private Color _normalColor= Color.white;
+
+        private Color _pressedColor = Color.white;
+
         private void Start()
         {
+            _normalColor.a = 0;
             _collider = GetComponent<Collider2D>();
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            _spriteRenderer.color = _normalColor;
         }
         public void ActivateHit(Action endAction)
         {
             _endAction = endAction;
             _collider.enabled = true;
-            _spriteRenderer.color = Color.yellow;
+            _spriteRenderer.color = _pressedColor;
 
             StartCoroutine(EndOperation());
         }
@@ -35,7 +41,7 @@ namespace BallGame.Components.Player.HitPoint
             yield return new WaitForSeconds(_collisionEndTime);
 
             _collider.enabled = false;
-            _spriteRenderer.color = Color.white;
+            _spriteRenderer.color = _normalColor;
 
             yield return new WaitForSeconds(_moveEndTime);
 
