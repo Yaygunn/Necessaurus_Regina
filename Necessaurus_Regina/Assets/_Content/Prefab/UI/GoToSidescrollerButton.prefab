@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4925126424500589306}
   - component: {fileID: 4770457077873197145}
   - component: {fileID: 7088453975497493867}
+  - component: {fileID: 4027926929278151328}
   m_Layer: 5
   m_Name: GoToSidescrollerButton
   m_TagString: Untagged
@@ -144,6 +145,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c22016373f2cb342b91b7508fc98e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4027926929278151328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2199180205556524537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754d1630a5ad75441a62b1ee2552bc01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9093625741225966032
