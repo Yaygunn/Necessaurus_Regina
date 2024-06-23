@@ -38,6 +38,11 @@ namespace BallGame.Managers
                 Destroy(gameObject);
             }
         }
+
+        private void Start()
+        {
+            Time.timeScale = 1f;
+        }
         
         private void InitalizeReferences()
         {
