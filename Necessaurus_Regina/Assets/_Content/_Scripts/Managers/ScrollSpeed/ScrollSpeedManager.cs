@@ -7,6 +7,7 @@ namespace Manager.ScrollSpeedManager
 
     public class ScrollSpeedManager : MonoBehaviour
     {
+        [SerializeField] private Animator _animator;
         [SerializeField] private float _playerStepSpeedIncrease;
         [SerializeField] private float _runAccelerationConstant;
         [SerializeField] private float _maxSpeed;
@@ -41,6 +42,7 @@ namespace Manager.ScrollSpeedManager
             _currentSpeed = math.clamp(_currentSpeed, 0, _maxSpeed);
             EventHub.MoveSpeed(_currentSpeed);
             EventHub.MoveSpeedRate(_currentSpeed / _maxSpeed);
+            _animator.SetFloat("Speed", _currentSpeed);
         }
         private void OnPlayerStep()
         {

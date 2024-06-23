@@ -1058,6 +1058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b103ab07914dac640916bc6293a64e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 1433002926}
   _playerStepSpeedIncrease: 6
   _runAccelerationConstant: 2
   _maxSpeed: 25
