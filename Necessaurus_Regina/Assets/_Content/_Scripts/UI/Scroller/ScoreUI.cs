@@ -7,11 +7,12 @@ using UnityEngine;
 public class ScoreUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private TextMeshProUGUI _scoreLabel;
 
     private void Start()
     {
         _scoreText.text = "0";
-        _scoreText.gameObject.SetActive(false);
+        HideScore();
         
         EventHub.Event_StartGame += InitializeScoreListening;
     }
@@ -19,6 +20,7 @@ public class ScoreUI : MonoBehaviour
     private void InitializeScoreListening()
     {
         _scoreText.gameObject.SetActive(true);
+        _scoreLabel.gameObject.SetActive(true);
         EventHub.Event_PlayerScore += UpdateScore;
         EventHub.Event_EndGame += HideScore;
     }
@@ -26,6 +28,7 @@ public class ScoreUI : MonoBehaviour
     private void HideScore()
     {
         _scoreText.gameObject.SetActive(false);
+        _scoreLabel.gameObject.SetActive(false);
     }
 
     private void UpdateScore(int score)
