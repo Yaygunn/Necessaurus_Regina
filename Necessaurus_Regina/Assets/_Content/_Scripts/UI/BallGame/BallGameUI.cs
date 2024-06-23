@@ -15,7 +15,6 @@ namespace BallGame.UI
         public TextMeshProUGUI MoveNameText;
         public TextMeshProUGUI MovePointsText;
         public TextMeshProUGUI TimerText;
-        public TextMeshProUGUI ContestantNameText;
         public TextMeshProUGUI StartLevelText;
         public TextMeshProUGUI CountdownText;
 
@@ -55,7 +54,6 @@ namespace BallGame.UI
         {
             UpdateScoreText(BallScoreManager.Instance.GetScore());
             UpdateMove("", "");
-            UpdateContestantName("Practice");
             
             if (BallScoreManager.Instance != null)
             {
@@ -102,11 +100,6 @@ namespace BallGame.UI
         {
             MoveNameText.text = moveName;
             MovePointsText.text = points;
-        }
-
-        private void UpdateContestantName(string name)
-        {
-            ContestantNameText.text = name;
         }
         
         public void SetTimer(float time)
