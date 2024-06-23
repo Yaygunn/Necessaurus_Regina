@@ -15,7 +15,7 @@ namespace SideScroller.Player.Controller
                 _player.ChangeState(_player.airState);
                 return;
             }
-            if(_player.CrouchCoyote > 0)
+            if(_player.CrouchPressed)
             {
                 _player.ResetCoyote();
                 _player.ChangeState(_player.crouchState);

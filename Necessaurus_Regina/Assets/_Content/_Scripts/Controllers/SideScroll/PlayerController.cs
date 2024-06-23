@@ -26,8 +26,9 @@ namespace SideScroller.Player.Controller
         #endregion
 
         public float JumpCoyote {  get; private set; }
-        public float CrouchCoyote { get; private set; }
         private float _maxCoyote { get; } = 0.2f;
+
+        public bool CrouchPressed { get; private set; }
         public BaseState CurrentState { get; private set; }
         private void Start()
         {
@@ -74,31 +75,30 @@ namespace SideScroller.Player.Controller
         public void OnCrouch()
         {
             CurrentState.OnCrouch();
+            CrouchPressed = true;
+            TriggerCoyoteCrouch();
         }
         public void OnEndCrouch()
         {
             CurrentState.OnEndCrouch();
+            CrouchPressed = false;
         }
 
         public void TriggerCoyoteJump()
         {
             JumpCoyote = _maxCoyote;
-            CrouchCoyote = 0;
         }
 
         public void TriggerCoyoteCrouch()
         {
-            CrouchCoyote = _maxCoyote;
             JumpCoyote = 0;
         }
         public void ResetCoyote()
         {
-            CrouchCoyote = 0;
             JumpCoyote = 0;
         }
         private void CoyoteTimer()
         {
-            CrouchCoyote -=Time.deltaTime;
             JumpCoyote -= Time.deltaTime;
         }
     }
