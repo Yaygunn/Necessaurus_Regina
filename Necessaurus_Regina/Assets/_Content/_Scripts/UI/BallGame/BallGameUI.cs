@@ -109,7 +109,7 @@ namespace BallGame.UI
 
         private void SetTimerText(float time)
         {
-            TimerText.text = $"Time: {Mathf.FloorToInt(time / 60):00}:{Mathf.FloorToInt(time % 60):00}";
+            TimerText.text = $"{Mathf.FloorToInt(time / 60):00}:{Mathf.FloorToInt(time % 60):00}";
         }
 
         private IEnumerator TimerCoroutine(float time)
