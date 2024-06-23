@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1641453994246258817, guid: c9650ae9ab5bbcc44bb181904dd1b880, type: 3}
       propertyPath: m_Name
-      value: SandCastle 3
+      value: Grade
       objectReference: {fileID: 0}
     - target: {fileID: 3316230970331154116, guid: c9650ae9ab5bbcc44bb181904dd1b880, type: 3}
       propertyPath: m_LocalScale.x
@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6247916015642111354, guid: c9650ae9ab5bbcc44bb181904dd1b880, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
