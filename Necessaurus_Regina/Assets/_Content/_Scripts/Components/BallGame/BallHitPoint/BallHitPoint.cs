@@ -28,7 +28,7 @@ namespace BallGame.Components.Player.HitPoint
             _collider = GetComponent<Collider2D>();
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _spriteRenderer.color = _normalColor;
-            _pressedColor.a = 0.3f;
+            _pressedColor.a = 0.5f;
         }
         public void ActivateHit(Action endAction)
         {
