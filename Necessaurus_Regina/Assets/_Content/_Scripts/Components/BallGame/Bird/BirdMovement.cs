@@ -14,10 +14,12 @@ namespace BallGame
         public Action OnHitCallback;
 
         private Rigidbody2D birdRb;
+        private Animator animator;
 
         private void Start()
         {
             birdRb = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
         }
         
         private void Update()
@@ -32,6 +34,7 @@ namespace BallGame
 
             EventHub.BallBirdHit();
             BallScoreManager.Instance.AddScore("Farofa");
+            animator.SetTrigger("onHit");
         }
         
         private void OnBecameInvisible()
