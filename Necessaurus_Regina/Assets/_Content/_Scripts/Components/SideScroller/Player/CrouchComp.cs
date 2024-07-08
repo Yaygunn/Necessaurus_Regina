@@ -10,6 +10,7 @@ namespace SideScroller.Components.Crouch
         [SerializeField] private float _crouchEndTime;
 
         private ShapeChanger _shapeChanger;
+        private bool _isCrouching;
 
         private Action _endAction;
         private void Start()
@@ -19,6 +20,11 @@ namespace SideScroller.Components.Crouch
 
         public void StartCrouch(Action endCrouch)
         {
+            if (_isCrouching)
+                return;
+            
+            _isCrouching = true;
+            EventHub.PlayerSlide(); 
             _endAction = endCrouch;
             _shapeChanger.Crouch();
         }
@@ -33,6 +39,7 @@ namespace SideScroller.Components.Crouch
         }
         private void EndCrouch()
         {
+            _isCrouching = false;
             _shapeChanger.Normal();
             _endAction();
         }

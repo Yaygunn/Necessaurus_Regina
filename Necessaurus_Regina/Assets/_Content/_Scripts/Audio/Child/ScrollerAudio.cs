@@ -18,6 +18,7 @@ namespace Audio.Scroller
             EventHub.Event_PlayerJump += OnJumped;
             EventHub.Event_PlayerCollided += Collided;
             EventHub.Event_PlayerStep += PlayerStep;
+            EventHub.Event_PlayerSlide += OnSlide;
         }
 
         public void DeActivate()
@@ -25,6 +26,7 @@ namespace Audio.Scroller
             EventHub.Event_PlayerJump -= OnJumped;
             EventHub.Event_PlayerCollided -= Collided;
             EventHub.Event_PlayerStep -= PlayerStep;
+            EventHub.Event_PlayerSlide -= OnSlide;
         }
 
 
@@ -36,6 +38,11 @@ namespace Audio.Scroller
         private void OnJumped()
         {
             _com.PlayOneShot(_data.Jump);
+        }
+        
+        private void OnSlide()
+        {
+            _com.PlayOneShot(_data.Slide);
         }
 
         private void Collided(EObsType type)

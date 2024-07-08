@@ -23,6 +23,12 @@ public static class EventHub
     {
         Event_PlayerStep?.Invoke();
     }
+    
+    public static event Action Event_PlayerSlide;
+    public static void PlayerSlide()
+    {
+        Event_PlayerSlide?.Invoke();
+    }
 
     public static event Action Event_PlayerJump;
     public static void PlayerJump()

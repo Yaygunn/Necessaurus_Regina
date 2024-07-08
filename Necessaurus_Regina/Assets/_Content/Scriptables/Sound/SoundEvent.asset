@@ -68,6 +68,13 @@ MonoBehaviour:
       Data3: -1304990837
       Data4: -95423525
     Path: event:/SFX/Footvolley/BallChest
+  <Slide>k__BackingField:
+    Guid:
+      Data1: -1097456601
+      Data2: 1332362415
+      Data3: 1513605800
+      Data4: -1566276336
+    Path: event:/SFX/Jogging/PlayerSlide
   <DogHit>k__BackingField:
     Guid:
       Data1: 289071732

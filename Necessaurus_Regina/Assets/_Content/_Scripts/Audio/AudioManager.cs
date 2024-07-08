@@ -42,7 +42,6 @@ namespace Manager.Audio
 
             _musicAudio = new MusicAudio(_fmodCommunication, _eventBindingSO);
 
-
             EventHub.Event_StartBallGameLevel += OpenBallGame;
             EventHub.Event_StartScrollerLevel += OpenScrollGame;
 
